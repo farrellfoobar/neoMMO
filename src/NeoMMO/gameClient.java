@@ -85,6 +85,7 @@ class gameMap extends JPanel
 		File temp = new File("");
 		//path should == absolute path + \NeoMMO\assets\PlainGrass.png
 		String path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + File.separatorChar + "assets" + File.separatorChar;
+		System.out.println( path );
 		BufferedImage[] imgs = new BufferedImage[images.length];
 		Random rand = new Random();
 		
