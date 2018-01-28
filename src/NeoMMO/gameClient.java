@@ -27,6 +27,7 @@ public class gameClient
 	
 	public static void main(String[] args) throws IOException 
     {
+		//UI
 		JFrame frame = new JFrame("NeoMMO");
 		gameMap map = new gameMap(9, 5);
 		frame.setPreferredSize( new Dimension(500, 500) );
@@ -35,34 +36,23 @@ public class gameClient
 		frame.add(map, BorderLayout.CENTER);
 		frame.pack();
 		frame.setVisible(true);
+		//END UI
 		
-		try{
-	        Socket serverSocket  = new Socket(ip, port);
-	        BufferedReader input = new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
-	        PrintWriter output = new PrintWriter(serverSocket.getOutputStream(), true);
-	    	Scanner in = new Scanner(System.in);
-	        
-	        String responce = null;
-	        while (true)
-	        {
-	        	while( in.hasNext() )
-	            {
-	        		output.println( in.next() );
-	            }
-	        	
-	        	responce = input.readLine();
-	        	if( responce != null)
-	        		System.out.println( responce );
-	            
-	        }
-		}
-		catch(java.net.ConnectException e)
+		//NETWORKING
+		final String ip = "atlasNetwork.dynu.net";
+		
+		Socket serverSocket = new Socket(ip, 9090);
+		BufferedReader input =new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
+		 
+		String responce = null; 
+		while(true)
 		{
-			System.out.println( "Could not connect to server. Is it up?" );
+			responce = input.readLine();
+			if( responce != null)
+				 System.out.println( responce );
 		}
         
-
-    }
+    }//end main
 	
 }
 
@@ -83,8 +73,6 @@ class gameMap extends JPanel
 	public void paint( Graphics g )
 	{
 		File temp = new File("");
-		//path should == absolute path + \NeoMMO\assets\PlainGrass.png
-		//String path = System.getProperty("user.dir").substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + File.separatorChar + "assets" + File.separatorChar;
 		String path = "assets" + File.separatorChar; 
 		File f = new File(path + "City.png");
 		System.out.println(f.getAbsolutePath());
