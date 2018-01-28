@@ -1,0 +1,1 @@
+java -cp ~/projects/game/neoMMO/bin/ NeoMMO.gameClient
