@@ -10,23 +10,24 @@ public class gameServer {
 
 public static void main(String[] args) throws IOException
 {
-        ServerSocket listener = new ServerSocket(9090);
-        Scanner in = new Scanner(System.in);
+	
+	
+	ServerSocket listener = new ServerSocket(9090);
+	Scanner in = new Scanner(System.in);
 
-        Socket socket = listener.accept();
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+    Socket socket = listener.accept();
+    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-        String scannerBuffer = "";
-        String temp = "";
+    String scannerBuffer = "";
+    String temp = "";
 
-        while (true)
+    while (true)
+    {
+    	while( in.hasNext() )
         {
-                while( in.hasNext() )
-                {
-                        out.println( in.next() );
-
-                }
+    		out.println( in.next() );
         }
+    }
 }         
          
 }
