@@ -1,0 +1,3 @@
+grant codeBase "file:/bin/-" {
+   permission java.util.PropertyPermission "*", "read,write";
+ };
