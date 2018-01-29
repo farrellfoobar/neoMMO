@@ -36,7 +36,7 @@ public class gameServer extends UnicastRemoteObject implements RMIserverInterfac
         gameServer obj = new gameServer();
 
         // Bind this object instance to the name "RmiServer"
-        Naming.rebind("//localhost/RmiServer", obj);
+        Naming.rebind("//localhost/gameServer", obj);
         System.out.println("PeerServer bound in registry");
         
 		/*
