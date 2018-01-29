@@ -26,11 +26,12 @@ import NeoMMOserver.RMIserverInterface;
 
 public class gameClient 
 {
-	static final String ip = "atlasNetwork.dynu.net";
-	static final int port = 9090;
+	//static final String ip = "atlasNetwork.dynu.net";
+	//static final int port = 9090;
 	
 	public static void main(String[] args) throws IOException, NotBoundException 
     {
+		
 		//UI
 		JFrame frame = new JFrame("NeoMMO");
 		gameMap map = new gameMap(9, 5);
@@ -44,8 +45,8 @@ public class gameClient
 		
 		//NETWORKING
 		
-		RMIserverInterface obj = (RMIserverInterface)Naming.lookup("atlasNetwork.dynu.net/RmiServer");
-        System.out.println(obj.getMessage()); 
+        RMIserverInterface obj = (RMIserverInterface)Naming.lookup("/atlasNetwork.dynu.net/RmiServer");
+        System.out.println(obj.getMessage());  
 		/*
 		final String ip = "atlasNetwork.dynu.net";
 		Socket serverSocket = new Socket(ip, 9090);
@@ -57,7 +58,7 @@ public class gameClient
 			responce = input.readLine();
 			if( responce != null)
 				 System.out.println( responce );
-		} */
+		}*/ 
         
     }//end main
 	
@@ -108,4 +109,5 @@ class gameMap extends JPanel
 		}
 		
 	}
+	
 }
