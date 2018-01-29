@@ -7,12 +7,32 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.rmi.registry.*; 
 
-public class gameServer 
+//This server/client setup uses RMI: Remote Method Invocation so that the client can simply call methods on the Server's object.
+//This means that there is only one canonical version of every object, hosted on the server, modified by RMI calls made by the client.
+//The outline of an RMI server and client on which this class is based exists here: https://en.wikipedia.org/wiki/Java_remote_method_invocation 
+public class gameServer extends UnicastRemoteObject implements RMIserverInterface
 {
 
-	public static void main(String[] args) throws IOException
-	{
+    public gameServer() throws RemoteException 
+    {
+        super(0);
+    }
+	
+	public static void main(String[] args) throws IOException 
+	{	
+        try { //special exception handler for registry creation
+            LocateRegistry.createRegistry(1099); 
+            System.out.println("java RMI registry created.");
+        } catch (RemoteException e) {
+            //do nothing, error means registry already exists
+            System.out.println("java RMI registry already exists.");
+        }
+		/*
 		ServerSocket listener = new ServerSocket(9090);
 		Scanner in = new Scanner(System.in);
 	 
@@ -29,6 +49,12 @@ public class gameServer
 				out.println( in.next() );
 			}
 		}
-	}         
+		*/
+	}
+	
+	public String getMessage()
+	{
+		return "Server Message: The cake is a lie.";
+	}
          
 }

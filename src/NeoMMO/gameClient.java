@@ -13,19 +13,23 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.util.Random;
 import java.util.Scanner;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+//To avoid copying code, and to keep the code consistent bettween classes this class imports the RMIserverInerface located in the NeoMMOserver but in the future
+//when the server and client are seperated both will need a copy of the interface
+import NeoMMOserver.RMIserverInterface;
 
 public class gameClient 
 {
 	static final String ip = "atlasNetwork.dynu.net";
 	static final int port = 9090;
 	
-	public static void main(String[] args) throws IOException 
+	public static void main(String[] args) throws IOException, NotBoundException 
     {
 		//UI
 		JFrame frame = new JFrame("NeoMMO");
@@ -39,8 +43,11 @@ public class gameClient
 		//END UI
 		
 		//NETWORKING
-		final String ip = "atlasNetwork.dynu.net";
 		
+		RMIserverInterface obj = (RMIserverInterface)Naming.lookup("//localhost/RmiServer");
+        System.out.println(obj.getMessage());
+		/*
+		final String ip = "atlasNetwork.dynu.net";
 		Socket serverSocket = new Socket(ip, 9090);
 		BufferedReader input =new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
 		 
@@ -50,7 +57,7 @@ public class gameClient
 			responce = input.readLine();
 			if( responce != null)
 				 System.out.println( responce );
-		}
+		} */
         
     }//end main
 	
