@@ -40,7 +40,7 @@ public class gameServer extends UnicastRemoteObject implements RMIserverInterfac
         gameServer obj = new gameServer();
 
         // Bind this object instance to the name "RmiServer"
-        Naming.rebind("atlasNetwork.dynu.net/RmiServer", obj);
+        Naming.rebind("RmiServer", obj);
         System.out.println("PeerServer bound in registry");
 		/*
 		ServerSocket listener = new ServerSocket(9090);
