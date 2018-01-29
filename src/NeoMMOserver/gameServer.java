@@ -1,6 +1,8 @@
 package NeoMMOserver;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,18 +31,23 @@ public class gameServer extends UnicastRemoteObject implements RMIserverInterfac
         Scanner in = new Scanner(System.in);
 
         Socket socket = listener.accept();
+        
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
+        BufferedReader input =new BufferedReader(new InputStreamReader( socket.getInputStream() ));
         String scannerBuffer = "";
         String temp = "";
-
+        String responce = null;
+        
         while (true)
-        {
+        {		/*
                 while( in.hasNext() )
                 {
                         out.println( in.next() );
-
                 }
+                */
+    			responce = input.readLine();
+    			if( responce != null)
+    				 System.out.println( responce );
         }
     }
 }

@@ -44,21 +44,25 @@ public class gameClient
 		//END UI */
 		
 		//NETWORKING
-        //RMIserverInterface obj = (RMIserverInterface)Naming.lookup("/atlasNetwork.dynu.net/RmiServer");
-        //System.out.println(obj.getMessage());  
-        
-		
 		final String ip = "atlasNetwork.dynu.net";
 		Socket serverSocket = new Socket(ip, 9090);
+        PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
 		BufferedReader input =new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
-		 
+        Scanner in = new Scanner(System.in);
+        
 		String responce = null; 
-		while(true)
-		{
-			responce = input.readLine();
-			if( responce != null)
-				 System.out.println( responce );
-		}
+        while (true)
+        {
+                while( in.hasNext() )
+                {
+                        out.println( in.next() );
+                }
+                /*
+    			responce = input.readLine();
+    			if( responce != null)
+    				 System.out.println( responce );
+                 */
+        }
         
     }//end main
 	
