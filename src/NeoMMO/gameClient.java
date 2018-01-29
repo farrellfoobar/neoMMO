@@ -31,7 +31,7 @@ public class gameClient
 	
 	public static void main(String[] args) throws IOException, NotBoundException 
     {
-		
+		/*
 		//UI
 		JFrame frame = new JFrame("NeoMMO");
 		gameMap map = new gameMap(9, 5);
@@ -41,13 +41,13 @@ public class gameClient
 		frame.add(map, BorderLayout.CENTER);
 		frame.pack();
 		frame.setVisible(true);
-		//END UI
+		//END UI */
 		
 		//NETWORKING
+        //RMIserverInterface obj = (RMIserverInterface)Naming.lookup("/atlasNetwork.dynu.net/RmiServer");
+        //System.out.println(obj.getMessage());  
+        
 		
-        RMIserverInterface obj = (RMIserverInterface)Naming.lookup("/atlasNetwork.dynu.net/RmiServer");
-        System.out.println(obj.getMessage());  
-		/*
 		final String ip = "atlasNetwork.dynu.net";
 		Socket serverSocket = new Socket(ip, 9090);
 		BufferedReader input =new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
@@ -58,7 +58,7 @@ public class gameClient
 			responce = input.readLine();
 			if( responce != null)
 				 System.out.println( responce );
-		}*/ 
+		}
         
     }//end main
 	

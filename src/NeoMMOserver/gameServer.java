@@ -1,13 +1,17 @@
 package NeoMMOserver;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Scanner;
 import java.rmi.registry.*; 
 
 public class gameServer extends UnicastRemoteObject implements RMIserverInterface {
-    public static final String MESSAGE = "Hello World";
+    public static final String MESSAGE = "Is this actually working?";
 
     public gameServer() throws RemoteException 
     {
@@ -19,22 +23,24 @@ public class gameServer extends UnicastRemoteObject implements RMIserverInterfac
         return MESSAGE;
     }
 
-    public static void main(String args[]) throws Exception {
-        System.out.println("RMI server started");
+    public static void main(String args[]) throws Exception 
+    {
+    	ServerSocket listener = new ServerSocket(9090);
+        Scanner in = new Scanner(System.in);
 
-        try { //special exception handler for registry creation
-            LocateRegistry.createRegistry(1099); 
-            System.out.println("java RMI registry created.");
-        } catch (RemoteException e) {
-            //do nothing, error means registry already exists
-            System.out.println("java RMI registry already exists.");
+        Socket socket = listener.accept();
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
+        String scannerBuffer = "";
+        String temp = "";
+
+        while (true)
+        {
+                while( in.hasNext() )
+                {
+                        out.println( in.next() );
+
+                }
         }
-        
-        gameServer obj = new gameServer();
-        
-        // Bind this object instance to the name "RmiServer"
-        Naming.rebind("/atlasNetwork.dynu.net/RmiServer", obj);
-        
-        //System.out.println("PeerServer bound in registry");
     }
 }
