@@ -25,20 +25,23 @@ public class gameServer extends UnicastRemoteObject implements RMIserverInterfac
 	
 	public static void main(String[] args) throws IOException 
 	{	
+        System.out.println("RMI server started");
+
         try { //special exception handler for registry creation
-            LocateRegistry.createRegistry(9090); 
+            LocateRegistry.createRegistry(1099); 
             System.out.println("java RMI registry created.");
         } catch (RemoteException e) {
             //do nothing, error means registry already exists
             System.out.println("java RMI registry already exists.");
         }
-        
+           
+        //Instantiate RmiServer
+
         gameServer obj = new gameServer();
 
         // Bind this object instance to the name "RmiServer"
-        Naming.rebind("//localhost/gameServer", obj);
+        Naming.rebind("//localhost/RmiServer", obj);
         System.out.println("PeerServer bound in registry");
-        
 		/*
 		ServerSocket listener = new ServerSocket(9090);
 		Scanner in = new Scanner(System.in);

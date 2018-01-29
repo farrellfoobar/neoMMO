@@ -44,8 +44,8 @@ public class gameClient
 		
 		//NETWORKING
 		
-		RMIserverInterface obj = (RMIserverInterface)Naming.lookup("//localhost/gameServer");
-        System.out.println(obj.getMessage());
+		RMIserverInterface obj = (RMIserverInterface)Naming.lookup("//localhost/RmiServer");
+        System.out.println(obj.getMessage()); 
 		/*
 		final String ip = "atlasNetwork.dynu.net";
 		Socket serverSocket = new Socket(ip, 9090);

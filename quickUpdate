@@ -1,5 +1,12 @@
 git add .
-echo "Comment for commit:"
+echo "Comment for commit or a for amend:"
 read comment
-git commit -m $comment 
+
+if [ $comment = "a" ]  
+then
+	git commit --amend --no-edit
+else
+	git commit -m $comment
+fi
+
 git push origin master
