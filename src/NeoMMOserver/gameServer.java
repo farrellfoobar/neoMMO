@@ -64,7 +64,7 @@ public class gameServer extends UnicastRemoteObject implements RMIserverInterfac
 	
 	public String getMessage()
 	{
-		return "Server Message: The cake is a lie.";
+		return "Trying Linux.";
 	}
          
 }
