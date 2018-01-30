@@ -18,9 +18,9 @@ public class PlayerShell implements PlayerInterface
     
 	public PlayerShell(String ip, int port) throws UnknownHostException, IOException
 	{
-		Socket serverSocket  = new Socket(ip, port);
-		BufferedReader input = new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
-		PrintWriter output = new PrintWriter(serverSocket.getOutputStream(), true);
+		serverSocket  = new Socket(ip, port);
+		input = new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
+		output = new PrintWriter(serverSocket.getOutputStream(), true);
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -59,6 +59,7 @@ public class PlayerShell implements PlayerInterface
 	{
 		System.out.println("move," + x + "," + y);
 		try {
+			System.out.println(serverSocket);
 			System.out.println(serverSocket.getOutputStream());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
