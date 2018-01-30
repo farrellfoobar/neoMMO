@@ -18,6 +18,7 @@ public class Player implements PlayerInterface
 	@Override
 	public int[] getPosition()
 	{
+		System.out.println( x + ", " + y );
 		return new int[] {x, y};
 	}
 	
@@ -32,6 +33,11 @@ public class Player implements PlayerInterface
 			this.x = x;
 			this.y = y;
 			out = true;
+		}
+		if(out)
+		{
+			System.out.print("Moving to: ");
+			this.getPosition();
 		}
 		return out;
 	}
