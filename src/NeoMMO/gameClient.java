@@ -20,9 +20,11 @@ import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import NeoMMOserver.gameServer;
 //To avoid copying code, and to keep the code consistent bettween classes this class imports the RMIserverInerface located in the NeoMMOserver but in the future
 //when the server and client are seperated both will need a copy of the interface
-import NeoMMOserver.RMIserverInterface;
+import NeoMMOserver.serverInterface;
 
 public class gameClient 
 {
@@ -50,19 +52,19 @@ public class gameClient
 		BufferedReader input =new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
         Scanner in = new Scanner(System.in);
         
+        serverInterface server = new gameServer();
+        
 		String responce = null; 
+		
+		System.out.println( server.getContent() );
+		/*
         while (true)
         {
-                while( in.hasNext() )
-                {
-                        out.println( in.next() );
-                }
-                /*
-    			responce = input.readLine();
-    			if( responce != null)
-    				 System.out.println( responce );
-                 */
-        }
+        	out.println();
+
+            responce = input.readLine();
+    		System.out.println( responce );
+        } */
         
     }//end main
 	

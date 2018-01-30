@@ -12,17 +12,19 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 import java.rmi.registry.*; 
 
-public class gameServer extends UnicastRemoteObject implements RMIserverInterface {
-    public static final String MESSAGE = "Is this actually working?";
+public class gameServer extends UnicastRemoteObject implements serverInterface {
 
+    private myObject obj = new myObject();
+    
     public gameServer() throws RemoteException 
     {
     	//super(1099);
         super(1099);    // required to avoid the 'rmic' step, see below
     }
 
-    public String getMessage() {
-        return MESSAGE;
+    public String getContent() 
+    {
+        return obj.getContent();
     }
 
     public static void main(String args[]) throws Exception 
