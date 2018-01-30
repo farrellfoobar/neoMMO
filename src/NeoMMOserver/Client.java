@@ -33,8 +33,10 @@ public class Client extends Thread
 			this.socket = socket;
 	        input = new BufferedReader(new InputStreamReader( socket.getInputStream() ));	//input is how the client listens for command from the real client
 	        output = new PrintWriter(socket.getOutputStream(), true);						//output is how the client responds to the real client
-		} finally
+		}
+		catch(Exception e)
 		{
+			e.printStackTrace();
 			endConnection();
 		}
 		//No two users will have the same ip + port, but to avoid worrying about leaking someone's ip when using their client's hash, I hash their ip+port with String.hashCode()

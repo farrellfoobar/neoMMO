@@ -9,4 +9,4 @@ else
 	git commit -m $comment
 fi
 
-git push origin master
+git push origin master --force

@@ -57,6 +57,13 @@ public class PlayerShell implements PlayerInterface
 	@Override
 	public boolean move(String x, String y) 
 	{
+		System.out.println("move," + x + "," + y);
+		try {
+			System.out.println(serverSocket.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		output.write("move," + x + "," + y);
 		return false;
 	}
