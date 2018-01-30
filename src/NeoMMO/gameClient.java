@@ -13,28 +13,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.util.Random;
 import java.util.Scanner;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import NeoMMOserver.gameServer;
-//To avoid copying code, and to keep the code consistent bettween classes this class imports the RMIserverInerface located in the NeoMMOserver but in the future
-//when the server and client are seperated both will need a copy of the interface
-import NeoMMOserver.serverInterface;
-
 public class gameClient 
 {
-	//static final String ip = "atlasNetwork.dynu.net";
-	//static final int port = 9090;
+	static final String ip = "atlasNetwork.dynu.net";
+	static final int port = 9090;
 	
-	public static void main(String[] args) throws IOException, NotBoundException 
+	public static void main(String[] args) throws IOException 
     {
 		/*
-		//UI
 		JFrame frame = new JFrame("NeoMMO");
 		gameMap map = new gameMap(9, 5);
 		frame.setPreferredSize( new Dimension(500, 500) );
@@ -43,30 +36,34 @@ public class gameClient
 		frame.add(map, BorderLayout.CENTER);
 		frame.pack();
 		frame.setVisible(true);
-		//END UI */
-		
-		//NETWORKING
-		final String ip = "atlasNetwork.dynu.net";
-		Socket serverSocket = new Socket(ip, 9090);
-        PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
-		BufferedReader input =new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
-        Scanner in = new Scanner(System.in);
+		*/
+		try{
+	        Socket serverSocket  = new Socket(ip, port);
+	        BufferedReader input = new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
+	        PrintWriter output = new PrintWriter(serverSocket.getOutputStream(), true);
+	    	Scanner in = new Scanner(System.in);
+	        
+	        String responce = null;
+	        while (true)
+	        {
+	        /*	while( in.hasNext() )
+	            {
+	        		output.println( in.next() );
+	            }*/
+	        	
+	        	responce = input.readLine();
+	        	if( responce != null)
+	        		System.out.println( responce );
+	            
+	        }
+		}
+		catch(java.net.ConnectException e)
+		{
+			System.out.println( "Could not connect to server. Is it up?" );
+		}
         
-        serverInterface server = new gameServer();
-        
-		String responce = null; 
-		
-		System.out.println( server.getContent() );
-		/*
-        while (true)
-        {
-        	out.println();
 
-            responce = input.readLine();
-    		System.out.println( responce );
-        } */
-        
-    }//end main
+    }
 	
 }
 
@@ -87,9 +84,8 @@ class gameMap extends JPanel
 	public void paint( Graphics g )
 	{
 		File temp = new File("");
-		String path = "assets" + File.separatorChar; 
-		File f = new File(path + "City.png");
-		System.out.println(f.getAbsolutePath());
+		//path should == absolute path + \NeoMMO\assets\PlainGrass.png
+		String path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + "\\assets\\";
 		BufferedImage[] imgs = new BufferedImage[images.length];
 		Random rand = new Random();
 		
@@ -115,5 +111,4 @@ class gameMap extends JPanel
 		}
 		
 	}
-	
 }
