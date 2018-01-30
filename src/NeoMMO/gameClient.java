@@ -1,5 +1,6 @@
 package NeoMMO;
 
+import NeoMMOshare.PlayerInterface;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -24,6 +25,7 @@ public class gameClient
 {
 	static final String ip = "atlasNetwork.dynu.net";
 	static final int port = 9090;
+	static PlayerShell player;
 	
 	public static void main(String[] args) throws IOException 
     {
@@ -37,31 +39,8 @@ public class gameClient
 		frame.pack();
 		frame.setVisible(true);
 		*/
-		try{
-	        Socket serverSocket  = new Socket(ip, port);
-	        BufferedReader input = new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
-	        PrintWriter output = new PrintWriter(serverSocket.getOutputStream(), true);
-	    	Scanner in = new Scanner(System.in);
-	        
-	        String responce = null;
-	        while (true)
-	        {
-	        /*	while( in.hasNext() )
-	            {
-	        		output.println( in.next() );
-	            }*/
-	        	
-	        	responce = input.readLine();
-	        	if( responce != null)
-	        		System.out.println( responce );
-	            
-	        }
-		}
-		catch(java.net.ConnectException e)
-		{
-			System.out.println( "Could not connect to server. Is it up?" );
-		}
-        
+		
+		player = new PlayerShell(ip, port);
 
     }
 	

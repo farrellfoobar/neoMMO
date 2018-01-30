@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.Socket;
 
 /*
@@ -13,15 +15,19 @@ import java.net.Socket;
 
 public class Client extends Thread
 {
-	public Socket socket = null;
-    BufferedReader input = null;
-    PrintWriter output = null;
+	private Socket socket = null;
+    private BufferedReader input = null;
+    private PrintWriter output = null;
+    private Method[] methods;
+    Player player = new Player();
 	public int hash;
 	//public player; //ingame representation of client
 	
 	//multiple clients use the same socket so this socket is passed to the client;
 	public Client(Socket socket) throws IOException
 	{
+		methods = Player.class.getDeclaredMethods();
+		
 		try
 		{
 			this.socket = socket;
@@ -39,15 +45,32 @@ public class Client extends Thread
 	@Override
 	public void run()
 	{
+		String command;
+		String[] methodArgs;
+		String method;
 		try 
 		{
-			String command = input.readLine();
+			command = input.readLine();
 		} catch (IOException e) 
 		{
 			e.printStackTrace();
 			try{ endConnection(); }catch(Exception e1){};
 			return;
 		}
+		
+		methodArgs = command.substring(command.indexOf(",")+1, command.length() ).split(",");
+		method = command.substring(0, command.indexOf(",") );
+		//EX: if commands = "move,3,4" then method = "move", and methodArgs = ["3","4"]
+		
+		for( int i = 0; i < methods.length; i++ )
+			if( command.equals(methods[i].getName()) )
+				try {
+					methods[i].invoke(player, methodArgs);
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		
 		//Do something with command
 	}
