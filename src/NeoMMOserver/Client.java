@@ -73,7 +73,7 @@ public class Client extends Thread
 			{
 				try 
 				{
-					output.write( (String) ( methods[i].invoke(player, methodArgs) ) );	//call the method and 
+					output.println( (String) ( methods[i].invoke(player, methodArgs) ) );	//call the method and 
 					System.out.println("Client asked to: " + methods[i].getName() );
 				} 
 				catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
@@ -83,7 +83,7 @@ public class Client extends Thread
 				}
 			}
 			else
-				output.write("false");
+				output.println("false");
 		}
 		
 		//Do something with command

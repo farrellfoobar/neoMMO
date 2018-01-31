@@ -22,9 +22,6 @@ public class clientPlayer implements PlayerInterface
 		input = new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
 		output = new PrintWriter(serverSocket.getOutputStream(), true);
 		
-		Thread.sleep(1000);
-		output.println("some junk");
-		
 		Scanner in = new Scanner(System.in);
 		
 		String responce = null;
@@ -44,7 +41,7 @@ public class clientPlayer implements PlayerInterface
                          break;
                 default: System.out.println( "Not a valid move" );
                          break;
-            }
+                }
         		output.println( in.next() );
             }
         	
