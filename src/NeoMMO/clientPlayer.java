@@ -10,13 +10,13 @@ import java.util.Scanner;
 
 import NeoMMOshare.PlayerInterface;
 
-public class PlayerShell implements PlayerInterface
+public class clientPlayer implements PlayerInterface
 {
     private Socket serverSocket;
     private BufferedReader input;
     private PrintWriter output;
     
-	public PlayerShell(String ip, int port) throws UnknownHostException, IOException
+	public clientPlayer(String ip, int port) throws UnknownHostException, IOException
 	{
 		serverSocket  = new Socket(ip, port);
 		input = new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
@@ -39,8 +39,6 @@ public class PlayerShell implements PlayerInterface
                 	String y = in.nextLine();
                 	move(x, y);
                          break;
-                case "getPosition":  getPosition();
-                         break;
                 default: System.out.println( "Not a valid move" );
                          break;
             }
@@ -58,22 +56,22 @@ public class PlayerShell implements PlayerInterface
 	public boolean move(String x, String y) 
 	{
 		System.out.println("move," + x + "," + y);
+		boolean out = false;
 		try {
-			System.out.println(serverSocket);
-			System.out.println(serverSocket.getOutputStream());
-		} catch (IOException e) {
+			output.write("move," + x + "," + y);
+			System.out.println("Here1");
+			String in = input.readLine();
+			System.out.println("Here2");
+			out = Boolean.parseBoolean(in);
+			System.out.println("Here3");
+		} catch (IOException e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		output.write("move," + x + "," + y);
-		return false;
-	}
-
-	@Override
-	public int[] getPosition() 
-	{
-		// TODO Auto-generated method stub
-		return null;
+		
+		System.out.println(out);
+		return out;
 	}
 
 }

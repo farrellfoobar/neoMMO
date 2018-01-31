@@ -53,6 +53,7 @@ public class Client extends Thread
 		try 
 		{
 			command = input.readLine();
+			System.out.println("got command");
 		} catch (IOException e) 
 		{
 			e.printStackTrace();
@@ -65,14 +66,23 @@ public class Client extends Thread
 		//EX: if commands = "move,3,4" then method = "move", and methodArgs = ["3","4"]
 		
 		for( int i = 0; i < methods.length; i++ )
+		{
 			if( command.equals(methods[i].getName()) )
-				try {
-					methods[i].invoke(player, methodArgs);
-				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
+			{
+				try 
+				{
+					output.write( (String) ( methods[i].invoke(player, methodArgs) ) );	//call the method and 
+					System.out.println("Client asked to: " + methods[i].getName() );
+				} 
+				catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}
+			else
+				output.write("false");
+		}
 		
 		//Do something with command
 	}

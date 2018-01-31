@@ -16,13 +16,6 @@ public class Player implements PlayerInterface
 	}
 	
 	@Override
-	public int[] getPosition()
-	{
-		System.out.println( x + ", " + y );
-		return new int[] {x, y};
-	}
-	
-	@Override
 	public boolean move(String xin, String yin)
 	{
 		int x = Integer.parseInt(xin);
@@ -36,8 +29,7 @@ public class Player implements PlayerInterface
 		}
 		if(out)
 		{
-			System.out.print("Moving to: ");
-			this.getPosition();
+			System.out.print("Moving to: " + this.x + ", " + this.y);
 		}
 		return out;
 	}

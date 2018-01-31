@@ -25,7 +25,7 @@ public class gameClient
 {
 	static final String ip = "atlasNetwork.dynu.net";
 	static final int port = 9090;
-	static PlayerShell player;
+	static clientPlayer player;
 	
 	public static void main(String[] args) throws IOException 
     {
@@ -40,8 +40,8 @@ public class gameClient
 		frame.setVisible(true);
 		*/
 		
-		player = new PlayerShell(ip, port);
-
+		player = new clientPlayer(ip, port);
+		
     }
 	
 }
