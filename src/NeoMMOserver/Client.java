@@ -53,6 +53,7 @@ public class Client extends Thread
 		String method;
 		try 
 		{
+			System.out.println("Waiting for command");
 			command = input.readLine();
 			System.out.println("got command");
 		} catch (IOException e) 
