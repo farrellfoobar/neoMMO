@@ -16,11 +16,14 @@ public class clientPlayer implements PlayerInterface
     private BufferedReader input;
     private PrintWriter output;
     
-	public clientPlayer(String ip, int port) throws UnknownHostException, IOException
+	public clientPlayer(String ip, int port) throws UnknownHostException, IOException, InterruptedException
 	{
 		serverSocket  = new Socket(ip, port);
 		input = new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
 		output = new PrintWriter(serverSocket.getOutputStream(), true);
+		
+		Thread.sleep(1000);
+		output.println("some junk");
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -58,7 +61,7 @@ public class clientPlayer implements PlayerInterface
 		System.out.println("move," + x + "," + y);
 		boolean out = false;
 		try {
-			output.write("move," + x + "," + y);
+			output.println("move," + x + "," + y);
 			System.out.println("Here1");
 			String in = input.readLine();
 			System.out.println("Here2");

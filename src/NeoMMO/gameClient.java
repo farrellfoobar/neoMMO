@@ -27,7 +27,7 @@ public class gameClient
 	static final int port = 9090;
 	static clientPlayer player;
 	
-	public static void main(String[] args) throws IOException 
+	public static void main(String[] args) throws IOException, InterruptedException 
     {
 		/*
 		JFrame frame = new JFrame("NeoMMO");
