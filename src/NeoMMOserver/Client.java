@@ -47,6 +47,7 @@ public class Client extends Thread
 	@Override
 	public void run()
 	{
+		System.out.println("Client Thread Started!");
 		String command;
 		String[] methodArgs;
 		String method;
