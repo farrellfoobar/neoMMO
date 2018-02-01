@@ -71,7 +71,7 @@ public class Client extends Thread
 		for( int i = 0; i < methods.length; i++ )
 		{
 			System.out.println("trying " + method + " is equal to " + methods[i].getName() + "result: " + methods[i].getName().equals(method));
-			if( method.equals(methods[i].getName()) )
+			if( methods[i].getName().equals(method) )
 			{
 				try 
 				{

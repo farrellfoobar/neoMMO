@@ -59,11 +59,9 @@ public class clientPlayer implements PlayerInterface
 		boolean out = false;
 		try {
 			output.println("move," + x + "," + y);
-			System.out.println("Here1");
 			String in = input.readLine();
-			System.out.println("Here2");
+			System.out.println(in);
 			out = Boolean.parseBoolean(in);
-			System.out.println("Here3");
 		} catch (IOException e) 
 		{
 			// TODO Auto-generated catch block

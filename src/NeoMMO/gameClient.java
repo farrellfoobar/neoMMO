@@ -48,7 +48,6 @@ public class gameClient
 
 class gameMap extends JPanel
 {
-	
 	static final String containerName = "neoMMO";
 	static final String[] images = {"Cabin.png", "City.png", "Forest.png", "Hill.png", "PlainGrass.png", "PlainRiver.png"};
 	
