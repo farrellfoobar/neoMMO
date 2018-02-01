@@ -67,8 +67,10 @@ public class Client extends Thread
 		method = command.substring(0, command.indexOf(",") );
 		//EX: if commands = "move,3,4" then method = "move", and methodArgs = ["3","4"]
 		
+		System.out.println("trying to find: " + method + " Looking at: ");
 		for( int i = 0; i < methods.length; i++ )
 		{
+			System.out.println(methods[i]);
 			if( command.equals(methods[i].getName()) )
 			{
 				try 
