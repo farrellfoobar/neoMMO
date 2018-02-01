@@ -5,7 +5,7 @@ import NeoMMOshare.PlayerInterface;
 public class Player implements PlayerInterface
 {
 	private int x, y;
-	private int movementPoints = 0;
+	private int movementPoints = 4;
 	private int maxMovementPoints = 8;
 	private int movementPerTurn = 4;
 	
