@@ -70,7 +70,7 @@ public class Client extends Thread
 		System.out.println("trying to find: " + method + " Looking at: ");
 		for( int i = 0; i < methods.length; i++ )
 		{
-			System.out.println(methods[i]);
+			System.out.println(methods[i].getName());
 			if( command.equals(methods[i].getName()) )
 			{
 				try 
