@@ -70,12 +70,12 @@ public class Client extends Thread
 		System.out.println("trying to find: " + method + " Looking at: ");
 		for( int i = 0; i < methods.length; i++ )
 		{
-			System.out.println("trying " +method + " is equal to " + methods[i].getName() + "result: " + methods[i].getName().equals(method));
+			System.out.println("trying " + method + " is equal to " + methods[i].getName() + "result: " + methods[i].getName().equals(method));
 			if( method.equals(methods[i].getName()) )
 			{
 				try 
 				{
-					output.println( (String) ( methods[i].invoke(player, methodArgs) ) );	//call the method and 
+					output.println( methods[i].invoke(player, methodArgs).toString() );	//call the method and 
 					System.out.println("Client asked to: " + methods[i].getName() );
 				} 
 				catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
