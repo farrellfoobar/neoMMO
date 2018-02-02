@@ -1,0 +1,2 @@
+git pull
+java -cp ~/projects/neoMMO/bin/ NeoMMOserver.gameServer
