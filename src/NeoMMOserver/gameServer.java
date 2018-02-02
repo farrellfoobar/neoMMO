@@ -63,6 +63,7 @@ public synchronized void increment()
 
 public synchronized void updateClientConnections()
 {
+	System.out.println("Updating Client Connections");
 	if(currentPlayers < maxPlayers)
 	{
 		Client temp;
