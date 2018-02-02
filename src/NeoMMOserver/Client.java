@@ -74,6 +74,7 @@ public class Client extends Thread
 			{
 				try 
 				{
+					System.out.println(methods[i].invoke(player, methodArgs));
 					output.println( methods[i].invoke(player, methodArgs) );	//call the method and 
 					System.out.println("Client asked to: " + methods[i].getName() );
 				} 
