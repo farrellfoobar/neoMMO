@@ -30,7 +30,7 @@ public gameServer() throws IOException
 	ServerSocket listener = new ServerSocket(port);
 	Socket socket;
 	
-	//start();
+	start();
 	
 	while(true) //adds players loop
 	{
