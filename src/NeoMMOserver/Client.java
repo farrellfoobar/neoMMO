@@ -64,9 +64,10 @@ public class Client extends Thread
 			} catch (IOException e) 
 			{
 				//IOException here probably means the cliend disconnected
+				isConnected = false;
+				System.out.println("Here!");
 				try
 				{ 
-					isConnected = false;
 					endConnection(); 
 				}
 				catch(Exception e1)
