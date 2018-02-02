@@ -42,9 +42,14 @@ public gameServer() throws IOException
 		{
 			try {
 				temp = new Client( listener.accept() );
-				this.wait();
-				clients.add( temp );
-				this.notify();
+				
+				synchronized( server )
+				{
+					this.wait();
+					clients.add( temp );
+					this.notify();
+				}
+
 				currentPlayers++;
 				System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
 			} catch (InterruptedException e) {
