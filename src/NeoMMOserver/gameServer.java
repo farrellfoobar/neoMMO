@@ -30,7 +30,6 @@ public static void main(String[] args) throws IOException
 public gameServer() throws IOException
 {
 	ServerSocket listener = new ServerSocket(port);
-	listener.setSoTimeout(1000);
 	Socket socket;
 	
 	start();
@@ -41,24 +40,16 @@ public gameServer() throws IOException
 	{
 		if(currentPlayers < maxPlayers)
 		{
-			try
-			{
+			try {
 				temp = new Client( listener.accept() );
-				clients.add( temp );	
+				this.wait();
+				clients.add( temp );
+				this.notify();
 				currentPlayers++;
 				System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
-			}
-			catch( SocketTimeoutException e)
-			{}
-		}
-		
-		for(Client c : clients)
-		{
-			if( !c.isAlive() )
-			{
-				clients.remove(c);
-				currentPlayers--;
-				System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
@@ -72,7 +63,12 @@ public void run()
 	{
 		for(Client c : clients)
 		{
-
+			if( !c.isAlive() )
+			{
+				clients.remove(c);
+				currentPlayers--;
+				System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
+			}
 		}
 	}
 }
