@@ -16,7 +16,7 @@ public class Player implements PlayerInterface
 	}
 	
 	@Override
-	public boolean move(String xin, String yin)
+	public Boolean move(String xin, String yin)
 	{
 		System.out.println("move got args: " + xin + " " +yin);
 		int x = Integer.parseInt(xin);

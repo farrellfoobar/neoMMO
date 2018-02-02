@@ -53,7 +53,7 @@ public class clientPlayer implements PlayerInterface
 	}
 	
 	@Override
-	public boolean move(String x, String y) 
+	public Boolean move(String x, String y) 
 	{
 		System.out.println("move," + x + "," + y);
 		boolean out = false;
