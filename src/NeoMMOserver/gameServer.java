@@ -50,6 +50,7 @@ public void run()
 	for(Client c : clients)
 	{
 		//purge:
+		System.out.println("here?");
 		if( !c.isAlive() )
 		{
 			clients.remove(c);
