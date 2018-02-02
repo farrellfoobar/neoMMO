@@ -46,6 +46,7 @@ public gameServer() throws IOException
 			{
 				clients.remove(c);
 				currentPlayers--;
+				System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
 			}
 		
 	}
