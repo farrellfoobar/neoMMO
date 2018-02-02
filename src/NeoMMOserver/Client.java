@@ -67,15 +67,14 @@ public class Client extends Thread
 		method = command.substring(0, command.indexOf(",") );
 		//EX: if commands = "move,3,4" then method = "move", and methodArgs = ["3","4"]
 		
-		System.out.println("trying to find: " + method + " Looking at: ");
 		for( int i = 0; i < methods.length; i++ )
 		{
-			System.out.println("trying " + method + " is equal to " + methods[i].getName() + "result: " + methods[i].getName().equals(method));
+
 			if( methods[i].getName().equals(method) )
 			{
 				try 
 				{
-					output.println( methods[i].invoke(player, methodArgs).toString() );	//call the method and 
+					output.println( methods[i].invoke(player, methodArgs) );	//call the method and 
 					System.out.println("Client asked to: " + methods[i].getName() );
 				} 
 				catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
