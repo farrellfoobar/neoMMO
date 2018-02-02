@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,27 +20,47 @@ public class gameServer extends Thread
 	public final int maxPlayers = 10;
 	public int currentPlayers = 0;
 	ArrayList<Client> clients = new ArrayList<Client>(maxPlayers);
+	static gameServer server;
 	
 public static void main(String[] args) throws IOException
 {
-	gameServer server = new gameServer();
+	server = new gameServer();
 }
 
 public gameServer() throws IOException
 {
 	ServerSocket listener = new ServerSocket(port);
+	listener.setSoTimeout(1000);
 	Socket socket;
 	
 	start();
 	
-	while(true) //adds players loop
+	Client temp;
+	
+	while(true) //add and remove players loop
 	{
 		if(currentPlayers < maxPlayers)
 		{
-			clients.add( new Client( listener.accept() ) );
-			currentPlayers++;
-			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
-		}		
+			try
+			{
+				temp = new Client( listener.accept() );
+				clients.add( temp );	
+				currentPlayers++;
+				System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
+			}
+			catch( SocketTimeoutException e)
+			{}
+		}
+		
+		for(Client c : clients)
+		{
+			if( !c.isAlive() )
+			{
+				clients.remove(c);
+				currentPlayers--;
+				System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
+			}
+		}
 	}
 }
 
@@ -51,13 +72,7 @@ public void run()
 	{
 		for(Client c : clients)
 		{
-			//purge:
-			if( !c.isAlive() )
-			{
-				clients.remove(c);
-				currentPlayers--;
-				System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
-			}
+
 		}
 	}
 }
