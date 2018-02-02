@@ -41,6 +41,7 @@ public class Client extends Thread
 		}
 		//No two users will have the same ip + port, but to avoid worrying about leaking someone's ip when using their client's hash, I hash their ip+port with String.hashCode()
 		this.hash = ( (socket.getInetAddress().toString() + socket.getPort() ).replace(".", "") ).hashCode();
+		
 		start();
 	}
 	
@@ -50,9 +51,10 @@ public class Client extends Thread
 		String command;
 		String[] methodArgs;
 		String method;
+		boolean isConnected = true;
 		int i;
 		
-		while(true) //client loop
+		while(isConnected) //client loop
 		{
 			
 			try 
@@ -64,6 +66,7 @@ public class Client extends Thread
 				//IOException here probably means the cliend disconnected
 				try
 				{ 
+					isConnected = false;
 					endConnection(); 
 				}
 				catch(Exception e1)
