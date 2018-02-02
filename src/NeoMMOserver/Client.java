@@ -74,8 +74,9 @@ public class Client extends Thread
 			{
 				try 
 				{
-					System.out.println(methods[i].invoke(player, methodArgs));
-					output.println( methods[i].invoke(player, methodArgs) );	//call the method and 
+					Object b = methods[i].invoke(player, methodArgs);
+					System.out.println( b );
+					output.println( b );	//call the method and 
 					System.out.println("Client asked to: " + methods[i].getName() );
 				} 
 				catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
