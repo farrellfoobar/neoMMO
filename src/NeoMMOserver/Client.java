@@ -61,11 +61,16 @@ public class Client extends Thread
 				System.out.println("Got command from client");
 			} catch (IOException e) 
 			{
-				e.printStackTrace();
-				try{ 
+				//IOException here probably means the cliend disconnected
+				try
+				{ 
 					endConnection(); 
-					}
-				catch(Exception e1){};
+				}
+				catch(Exception e1)
+				{
+					System.out.println("WARNING: Some resources may not have been freed.");
+				};
+				
 				return;
 			}
 			

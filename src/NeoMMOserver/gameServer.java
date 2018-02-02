@@ -42,12 +42,14 @@ public gameServer() throws IOException
 		}
 		
 		for(Client c : clients)
+		{
 			if( !c.isAlive() )
 			{
 				clients.remove(c);
 				currentPlayers--;
 				System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
 			}
+		}
 		
 	}
 }
