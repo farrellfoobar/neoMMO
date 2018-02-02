@@ -47,53 +47,48 @@ public class Client extends Thread
 	@Override
 	public void run()
 	{
-		System.out.println("Client Thread Started!");
 		String command;
 		String[] methodArgs;
 		String method;
-		try 
-		{
-			System.out.println("Waiting for command");
-			command = input.readLine();
-			System.out.println("got command");
-		} catch (IOException e) 
-		{
-			e.printStackTrace();
-			try{ endConnection(); }catch(Exception e1){};
-			return;
-		}
+		int i;
 		
-		methodArgs = command.substring(command.indexOf(",")+1, command.length() ).split(",");
-		method = command.substring(0, command.indexOf(",") );
-		//EX: if commands = "move,3,4" then method = "move", and methodArgs = ["3","4"]
-		
-		for( int i = 0; i < methods.length; i++ )
+		while(true) //client loop
 		{
-
-			if( methods[i].getName().equals(method) )
+			
+			try 
+			{
+				command = input.readLine();
+				System.out.println("Got command from client");
+			} catch (IOException e) 
+			{
+				e.printStackTrace();
+				try{ 
+					endConnection(); 
+					}
+				catch(Exception e1){};
+				return;
+			}
+			
+			methodArgs = command.substring(command.indexOf(",")+1, command.length() ).split(",");
+			method = command.substring(0, command.indexOf(",") );
+			//EX: if commands = "move,3,4" then method = "move", and methodArgs = ["3","4"]
+			
+			i = 0;
+			while( !methods[i].getName().equals(method) )
 			{
 				try 
 				{
-					Object b = methods[i].invoke(player, methodArgs);
-					System.out.println( "method out: " + b );
-					System.out.println("here1");
-					output.println( b.toString() );	//call the method and 
-					System.out.println("Client asked to: " + methods[i].getName() );
+					output.println( methods[i].invoke(player, methodArgs).toString() );	//call the method and send the client the result
 				} 
 				catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
 				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				i++;
 			}
-			else
-				{
-					System.out.println("here2");
-					output.println("false");
-				}
-		}
+			
+		}//end client loop
 		
-		//Do something with command
 	}
 	
 	public void endConnection()
