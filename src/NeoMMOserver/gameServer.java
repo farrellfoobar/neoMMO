@@ -48,7 +48,7 @@ public gameServer() throws IOException
 
 //This loop handles passive things that the client did not command, like timekeeping, bleeding etc
 
-public synchronized void run()
+public void run()
 {
 	while(true)
 	{
