@@ -76,6 +76,7 @@ public class Client extends Thread
 				{
 					Object b = methods[i].invoke(player, methodArgs);
 					System.out.println( "method out: " + b );
+					System.out.println("here1");
 					output.println( b.toString() );	//call the method and 
 					System.out.println("Client asked to: " + methods[i].getName() );
 				} 
@@ -87,6 +88,7 @@ public class Client extends Thread
 			}
 			else
 				{
+					System.out.println("here2");
 					output.println("false");
 				}
 		}
