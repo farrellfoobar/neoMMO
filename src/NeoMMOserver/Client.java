@@ -79,7 +79,6 @@ public class Client extends Thread
 			
 			try 
 			{
-				System.out.println( "Trying to call: " + methods);
 				output.println( methods[i].invoke(player, methodArgs).toString() );	//call the method and send the client the result
 			} 
 			catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
