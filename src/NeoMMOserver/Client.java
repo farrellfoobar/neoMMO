@@ -86,7 +86,9 @@ public class Client extends Thread
 				}
 			}
 			else
-				{}//output.println("false");
+				{
+					output.println("false");
+				}
 		}
 		
 		//Do something with command
