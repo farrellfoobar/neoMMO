@@ -75,7 +75,10 @@ public class Client extends Thread
 			
 			i = 0;
 			while( !methods[i].getName().equals(method) )
+			{
 				i++;
+				System.out.println("Here");
+			}
 			
 			try 
 			{
