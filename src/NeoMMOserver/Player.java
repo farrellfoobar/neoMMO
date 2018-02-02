@@ -30,7 +30,7 @@ public class Player implements PlayerInterface
 		}
 		if(out)
 		{
-			System.out.print("Moving to: " + this.x + ", " + this.y);
+			System.out.println("Moving to: " + this.x + ", " + this.y);
 		}
 		return out;
 	}
