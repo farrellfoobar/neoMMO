@@ -75,7 +75,7 @@ public class Client extends Thread
 				try 
 				{
 					Object b = methods[i].invoke(player, methodArgs);
-					System.out.println( b );
+					System.out.println( "method out: " + b );
 					output.println( b.toString() );	//call the method and 
 					System.out.println("Client asked to: " + methods[i].getName() );
 				} 
