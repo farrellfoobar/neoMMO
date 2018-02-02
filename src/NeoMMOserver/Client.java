@@ -75,16 +75,16 @@ public class Client extends Thread
 			
 			i = 0;
 			while( !methods[i].getName().equals(method) )
-			{
-				try 
-				{
-					output.println( methods[i].invoke(player, methodArgs).toString() );	//call the method and send the client the result
-				} 
-				catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
-				{
-					e.printStackTrace();
-				}
 				i++;
+			
+			try 
+			{
+				System.out.println( "Trying to call: " + methods);
+				output.println( methods[i].invoke(player, methodArgs).toString() );	//call the method and send the client the result
+			} 
+			catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
+			{
+				e.printStackTrace();
 			}
 			
 		}//end client loop
