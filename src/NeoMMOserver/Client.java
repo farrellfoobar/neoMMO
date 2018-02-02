@@ -96,7 +96,8 @@ public class Client extends Thread
 			}
 			
 		}//end client loop
-		
+		System.out.println("Here 2!;");
+		return;
 	}
 	
 	public void endConnection()
