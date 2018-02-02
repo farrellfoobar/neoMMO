@@ -18,7 +18,6 @@ public class Player implements PlayerInterface
 	@Override
 	public Boolean move(String xin, String yin)	//NOTE: this method returns Boolean not boolean: Boolean is an object wrapper that allows us to call toString.
 	{
-		System.out.println("move got args: " + xin + " " +yin);
 		int x = Integer.parseInt(xin);
 		int y = Integer.parseInt(yin);
 		boolean out = false;
@@ -28,10 +27,7 @@ public class Player implements PlayerInterface
 			this.y = y;
 			out = true;
 		}
-		if(out)
-		{
-			System.out.println("Moving to: " + this.x + ", " + this.y);
-		}
+
 		return out;
 	}
 }

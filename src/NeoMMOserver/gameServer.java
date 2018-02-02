@@ -32,25 +32,14 @@ public gameServer() throws IOException
 	
 	//start();
 	
-	while(true) //add/remove players loop
+	while(true) //adds players loop
 	{
 		if(currentPlayers < maxPlayers)
 		{
 			clients.add( new Client( listener.accept() ) );
 			currentPlayers++;
 			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
-		}
-		
-		for(Client c : clients)
-		{
-			if( !c.isAlive() )
-			{
-				clients.remove(c);
-				currentPlayers--;
-				System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
-			}
-		}
-		
+		}		
 	}
 }
 
@@ -58,10 +47,19 @@ public gameServer() throws IOException
 @Override
 public void run()
 {
-	for( Client c : clients )
+	for(Client c : clients)
 	{
+		//purge:
+		if( !c.isAlive() )
+		{
+			clients.remove(c);
+			currentPlayers--;
+			System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
+		}
+		
 		
 	}
+	
 }
 
          

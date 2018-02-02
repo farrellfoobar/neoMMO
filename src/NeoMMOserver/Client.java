@@ -65,7 +65,7 @@ public class Client extends Thread
 			{
 				//IOException here probably means the cliend disconnected
 				isConnected = false;
-				System.out.println("Here!");
+				
 				try
 				{ 
 					endConnection(); 
@@ -75,6 +75,7 @@ public class Client extends Thread
 					System.out.println("WARNING: Some resources may not have been freed.");
 				};
 				
+				System.out.println("Here!");
 				return;
 			}
 			
