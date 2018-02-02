@@ -47,20 +47,19 @@ public gameServer() throws IOException
 @Override
 public void run()
 {
-	for(Client c : clients)
+	while(true)
 	{
-		//purge:
-		System.out.println("here?");
-		if( !c.isAlive() )
+		for(Client c : clients)
 		{
-			clients.remove(c);
-			currentPlayers--;
-			System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
+			//purge:
+			if( !c.isAlive() )
+			{
+				clients.remove(c);
+				currentPlayers--;
+				System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
+			}
 		}
-		
-		
 	}
-	
 }
 
          
