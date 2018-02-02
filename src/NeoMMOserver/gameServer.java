@@ -34,10 +34,10 @@ public gameServer() throws IOException
 	
 	while(true) //add/remove players loop
 	{
-		while(currentPlayers < maxPlayers)
+		if(currentPlayers < maxPlayers)
 		{
 			clients.add( new Client( listener.accept() ) );
-			System.out.println("Player connected!");
+			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
 			currentPlayers++;
 		}
 		
@@ -47,6 +47,7 @@ public gameServer() throws IOException
 				clients.remove(c);
 				currentPlayers--;
 			}
+		
 	}
 }
 
