@@ -37,8 +37,8 @@ public gameServer() throws IOException
 		if(currentPlayers < maxPlayers)
 		{
 			clients.add( new Client( listener.accept() ) );
-			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
 			currentPlayers++;
+			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
 		}
 		
 		for(Client c : clients)
