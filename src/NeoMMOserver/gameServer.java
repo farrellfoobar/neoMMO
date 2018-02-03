@@ -39,6 +39,7 @@ public static void main(String[] args) throws IOException
 public gameServer() throws IOException
 {
 	listener = new ServerSocket(port);
+	listener.setSoTimeout(1000);
 
 	Timer timer = new Timer();
 	
@@ -50,20 +51,14 @@ public gameServer() throws IOException
 		}
 	}, milisPerRound, milisPerRound);
 	
-	System.out.println("here");
-}
-
-//This loop handles passive things that the client did not command, like timekeeping, bleeding etc
-
-public void run()
-{
 	while(true)
 	{
 		updateClientConnections();
 	}
 }
 
-public synchronized void increment()
+//This loop handles passive things that the client did not command, like timekeeping, bleeding etc
+public void increment()
 {
 	System.out.println("Incrementing!");
 	
@@ -73,9 +68,9 @@ public synchronized void increment()
 	}
 }
 
-public synchronized void updateClientConnections()
+public void updateClientConnections()
 {
-	System.out.println("Updating Client Connections");
+	//System.out.println("Updating Client Connections");
 	if(currentPlayers < maxPlayers)
 	{
 		Client temp;
@@ -95,8 +90,10 @@ public synchronized void updateClientConnections()
 	
 	for(Client c : clients)
 	{
+		System.out.println("testing alive");
 		if( !c.isAlive() )
 		{
+			System.out.println("isntAlive");
 			clients.remove(c);
 			currentPlayers--;
 			System.out.println("Player disconnected! at " + currentPlayers + "/" + maxPlayers);
