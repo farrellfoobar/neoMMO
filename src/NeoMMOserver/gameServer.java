@@ -42,6 +42,7 @@ public gameServer() throws IOException
 
 	Timer timer = new Timer();
 	
+	start();
 	timer.schedule( new TimerTask()
 	{
 		public void run()
