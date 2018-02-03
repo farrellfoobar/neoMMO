@@ -70,7 +70,7 @@ public void increment()
 
 public void updateClientConnections()
 {
-	//System.out.println("Updating Client Connections");
+	System.out.println("Updating Client Connections");
 	if(currentPlayers < maxPlayers)
 	{
 		Client temp;
