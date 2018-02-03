@@ -50,7 +50,7 @@ public gameServer() throws IOException
 		}
 	}, milisPerRound, milisPerRound);
 	
-	start();
+	System.out.println("here");
 }
 
 //This loop handles passive things that the client did not command, like timekeeping, bleeding etc
