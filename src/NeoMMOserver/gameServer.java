@@ -42,7 +42,6 @@ public gameServer() throws IOException
 
 	Timer timer = new Timer();
 	
-	start();
 	timer.schedule( new TimerTask()
 	{
 		public void run()
@@ -50,6 +49,8 @@ public gameServer() throws IOException
 			increment();
 		}
 	}, milisPerRound, milisPerRound);
+	
+	start();
 }
 
 //This loop handles passive things that the client did not command, like timekeeping, bleeding etc
