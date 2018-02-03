@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import NeoMMOshare.Tile;
+import NeoMMOshare.gameMap;
 
 /*
  * This class creates a server and deligates the acception of new connection to one thread while processing the clients' moves in another
@@ -28,7 +28,7 @@ public class gameServer extends Thread
 	static gameServer server;
 	ServerSocket listener;
 	public static int mapSize = 100;	
-	public static Map map = new Map(mapSize);
+	public static gameMap map = new gameMap();
 
 	
 public static void main(String[] args) throws IOException

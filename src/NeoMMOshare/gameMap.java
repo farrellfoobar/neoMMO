@@ -1,13 +1,14 @@
-package NeoMMOserver;
+package NeoMMOshare;
 
 import java.util.ArrayList;
-import NeoMMOshare.Tile;
 
-public class Map 
+import NeoMMOserver.gameServer;
+
+public class gameMap 
 {
 	private ArrayList< ArrayList< Tile > > layout; //calling this map makes this class very confusing
 	
-	public Map(int size)
+	public gameMap(int size)
 	{
 		ArrayList< ArrayList< Tile > > map = new ArrayList< ArrayList< Tile > >();
 		
@@ -16,12 +17,12 @@ public class Map
 				this.layout.get(x).set(y, new Tile() );
 	}
 	
-	public Map()
+	public gameMap()
 	{
 		ArrayList< ArrayList< Tile > > map = new ArrayList< ArrayList< Tile > >();
 	}
 	
-	public Map(int r, int x, int y)
+	public gameMap(int r, int x, int y)
 	{
 		ArrayList< ArrayList< Tile > > map = new ArrayList< ArrayList< Tile > >();
 		
@@ -30,9 +31,9 @@ public class Map
 			
 	}
 	
-	public Map getRadialMap(int r, int x, int y)
+	public gameMap getRadialMap(int r, int x, int y)
 	{
-		return new Map(r, x, y);
+		return new gameMap(r, x, y);
 	}
 	
 	private int[][] getAdjacent(int x, int y)
