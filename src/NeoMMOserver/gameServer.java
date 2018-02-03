@@ -12,6 +12,8 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import NeoMMOshare.Tile;
+
 /*
  * This class creates a server and deligates the acception of new connection to one thread while processing the clients' moves in another
  */
@@ -25,6 +27,9 @@ public class gameServer extends Thread
 	ArrayList<Client> clients = new ArrayList<Client>(maxPlayers);
 	static gameServer server;
 	ServerSocket listener;
+	public static int mapSize = 100;	
+	public static Map map = new Map(mapSize);
+
 	
 public static void main(String[] args) throws IOException
 {
@@ -59,6 +64,11 @@ public void run()
 public synchronized void increment()
 {
 	System.out.println("Incrementing!");
+	
+	for( Client c : clients)
+	{
+		c.player.increment();
+	}
 }
 
 public synchronized void updateClientConnections()
@@ -69,7 +79,7 @@ public synchronized void updateClientConnections()
 		Client temp;
 		try
 		{
-			temp = new Client( listener.accept() );
+			temp = new Client( listener.accept(), this );
 			clients.add( temp );	
 			currentPlayers++;
 			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);

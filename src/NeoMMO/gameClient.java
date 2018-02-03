@@ -1,6 +1,5 @@
 package NeoMMO;
 
-import NeoMMOshare.PlayerInterface;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -29,7 +28,6 @@ public class gameClient
 	
 	public static void main(String[] args) throws IOException, InterruptedException 
     {
-		/*
 		JFrame frame = new JFrame("NeoMMO");
 		gameMap map = new gameMap(9, 5);
 		frame.setPreferredSize( new Dimension(500, 500) );
@@ -38,10 +36,8 @@ public class gameClient
 		frame.add(map, BorderLayout.CENTER);
 		frame.pack();
 		frame.setVisible(true);
-		*/
 		
 		player = new clientPlayer(ip, port);
-		
     }
 	
 }
@@ -63,7 +59,7 @@ class gameMap extends JPanel
 	{
 		File temp = new File("");
 		//path should == absolute path + \NeoMMO\assets\PlainGrass.png
-		String path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + "\\assets\\";
+		String path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + "\\assets\\tiles\\";
 		BufferedImage[] imgs = new BufferedImage[images.length];
 		Random rand = new Random();
 		

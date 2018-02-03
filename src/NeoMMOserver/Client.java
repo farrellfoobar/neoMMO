@@ -3,6 +3,8 @@ package NeoMMOserver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,23 +18,23 @@ import java.net.Socket;
 public class Client extends Thread
 {
 	private Socket socket = null;
-    private BufferedReader input = null;
-    private PrintWriter output = null;
+    private ObjectInputStream input = null;
+    private ObjectOutputStream output = null;
     private Method[] methods;
-    Player player = new Player();
+    serverPlayer player = new serverPlayer();
 	public int hash;
-	//public player; //ingame representation of client
+	gameServer host;
 	
 	//multiple clients use the same socket so this socket is passed to the client;
-	public Client(Socket socket) throws IOException
+	public Client(Socket socket, gameServer host) throws IOException
 	{
-		methods = Player.class.getDeclaredMethods();
-		
+		methods = serverPlayer.class.getDeclaredMethods();
+		this.host = host;
 		try
 		{
 			this.socket = socket;
-	        input = new BufferedReader(new InputStreamReader( socket.getInputStream() ));	//input is how the client listens for command from the real client
-	        output = new PrintWriter(socket.getOutputStream(), true);						//output is how the client responds to the real client
+			input = new ObjectInputStream( socket.getInputStream() );
+			output = new ObjectOutputStream( socket.getOutputStream() );
 		}
 		catch(Exception e)
 		{
@@ -48,7 +50,7 @@ public class Client extends Thread
 	@Override
 	public void run()
 	{
-		String command;
+		String command = null;
 		String[] methodArgs;
 		String method;
 		boolean isConnected = true;
@@ -59,8 +61,8 @@ public class Client extends Thread
 			
 			try 
 			{
-				command = input.readLine();
-				System.out.println("Got command from client");
+				command = input.readObject().toString();
+				System.out.println("Got command from client: " + command);
 			} catch (IOException e) 
 			{
 				//IOException here probably means the cliend disconnected
@@ -77,6 +79,9 @@ public class Client extends Thread
 				
 				System.out.println("Here!");
 				return;
+			} catch (ClassNotFoundException e) 
+			{
+				e.printStackTrace();
 			}
 			
 			methodArgs = command.substring(command.indexOf(",")+1, command.length() ).split(",");
@@ -89,9 +94,9 @@ public class Client extends Thread
 			
 			try 
 			{
-				output.println( methods[i].invoke(player, methodArgs).toString() );	//call the method and send the client the result
+				output.writeObject( methods[i].invoke(player, methodArgs) );	//call the method and send the client the result
 			} 
-			catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
+			catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | IOException e) 
 			{
 				e.printStackTrace();
 			}
@@ -103,10 +108,11 @@ public class Client extends Thread
 	
 	public void endConnection()
 	{
-		if( output != null )
-			this.output.close();
 		try 
 		{
+			if( output != null )
+				this.output.close();
+			
 			if(input != null)
 				this.input.close();
 			

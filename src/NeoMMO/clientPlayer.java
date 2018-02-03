@@ -3,24 +3,27 @@ package NeoMMO;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import NeoMMOshare.PlayerInterface;
+import NeoMMOshare.Tile;
 
-public class clientPlayer implements PlayerInterface
+public class clientPlayer
 {
     private Socket serverSocket;
-    private BufferedReader input;
-    private PrintWriter output;
+    private ObjectInputStream input;
+    private ObjectOutputStream output;
     
 	public clientPlayer(String ip, int port) throws UnknownHostException, IOException, InterruptedException
 	{
 		serverSocket  = new Socket(ip, port);
-		input = new BufferedReader(new InputStreamReader( serverSocket.getInputStream() ));
-		output = new PrintWriter(serverSocket.getOutputStream(), true);
+		input = new ObjectInputStream( serverSocket.getInputStream() );
+		output = new ObjectOutputStream( serverSocket.getOutputStream() );
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -42,27 +45,30 @@ public class clientPlayer implements PlayerInterface
                 default: System.out.println( "Not a valid move" );
                          break;
                 }
-        		output.println( in.next() );
+        		output.writeObject( in.next() );
             }
         	
-        	responce = input.readLine();
+        	try {
+				responce = input.readObject().toString();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
         	if( responce != null)
         		System.out.println( responce );
             
         }
 	}
 	
-	@Override
 	public Boolean move(String x, String y) 
 	{
 		System.out.println("move," + x + "," + y);
 		Boolean out = false;
 		try {
-			output.println("move," + x + "," + y);
-			String s = input.readLine();
+			output.writeBytes("move," + x + "," + y);
+			String s = input.readObject().toString();
 			System.out.println("message in: " + s);
 			out = Boolean.parseBoolean( s );
-		} catch (IOException e) 
+		} catch (IOException | ClassNotFoundException e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
