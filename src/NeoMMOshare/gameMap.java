@@ -13,8 +13,11 @@ public class gameMap
 		this.map = new ArrayList< ArrayList< Tile > >();
 		
 		for( int x = 0; x < size; x++)
+		{
+			this.map.set(x, new ArrayList() )
 			for( int y = 0; y < size; y++)
 				this.map.get(x).set(y, new Tile() );
+		}
 	}
 	
 	public gameMap(int width, int length)
