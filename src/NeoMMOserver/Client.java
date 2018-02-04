@@ -33,8 +33,9 @@ public class Client extends Thread
 		try
 		{
 			this.socket = socket;
-			//input = new ObjectInputStream( socket.getInputStream() );
-			//output = new ObjectOutputStream( socket.getOutputStream() );
+			output = new ObjectOutputStream( socket.getOutputStream() );
+			output.flush();
+			input = new ObjectInputStream( socket.getInputStream() );
 		}
 		catch(Exception e)
 		{
