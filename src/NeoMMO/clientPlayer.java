@@ -41,7 +41,7 @@ public class clientPlayer
                 	String x = in.nextLine();
                 	System.out.println("Enter your desired y");
                 	String y = in.nextLine();
-                	move(x, y);
+                	System.out.println( move(x, y) );
                          break;
                 default: System.out.println( "Not a valid move" );
                          break;
@@ -71,7 +71,6 @@ public class clientPlayer
 			out = Boolean.parseBoolean( s );
 		} catch (IOException | ClassNotFoundException e) 
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

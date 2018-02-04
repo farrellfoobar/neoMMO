@@ -62,6 +62,7 @@ public class Client extends Thread
 			
 			try 
 			{
+				System.out.println("waiting for command!");
 				command = input.readObject().toString();
 				System.out.println("Got command from client: " + command);
 			} catch (IOException e) 
