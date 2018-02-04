@@ -66,7 +66,22 @@ public gameServer() throws IOException
 	while(true)
 	{
 		System.out.println("accepting");
-		acceptClients();
+		if(currentPlayers < maxPlayers)
+		{
+			Client temp;
+			try
+			{
+				System.out.println("Waiting for connection!");
+				clients.add( new Client( listener.accept(), this ) );
+				System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
+				currentPlayers++;
+			}
+			catch( SocketTimeoutException e){System.out.println("exc");} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 }
 
@@ -100,23 +115,7 @@ public void pruneClients()
 //This method is blocking
 public void acceptClients()
 {
-	if(currentPlayers < maxPlayers)
-	{
-		Client temp;
-		try
-		{
-			System.out.println("Waiting for connection!");
-			temp = new Client( listener.accept(), this );
-			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
-			clients.add( temp );	
-			currentPlayers++;
-		}
-		catch( SocketTimeoutException e){} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-	}
+	
 }
          
 }
