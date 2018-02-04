@@ -57,9 +57,12 @@ public gameServer() throws IOException
 			pruneClients();
 			
 			if( tickPeriods >= tickPeriodPerRound)
+			{
 				increment();
+				tickPeriods = 0;
+			}
 		}
-	}, 100, 100);
+	}, tickPeriod, tickPeriod);
 	
 	//acceptClients() is blocking so it runs on the constructor's thread
 	while(true)
