@@ -65,7 +65,7 @@ public class clientPlayer
 		System.out.println("move," + x + "," + y);
 		Boolean out = false;
 		try {
-			output.writeBytes("move," + x + "," + y);
+			output.writeObject("move," + x + "," + y);
 			String s = input.readObject().toString();
 			System.out.println("message in: " + s);
 			out = Boolean.parseBoolean( s );

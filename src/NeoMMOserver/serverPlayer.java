@@ -31,6 +31,7 @@ public class serverPlayer
 		
 		ArrayList< ArrayList<Tile> > visable = new ArrayList< ArrayList<Tile> >();
 		
+		
 		for( int xoff = -viewX/2; xoff <= viewX/2; xoff++)
 			for( int yoff = -viewY/2; yoff <= viewY/2; yoff++ )
 				visable.get( xoff+viewX/2 ).set(yoff+viewX/2, gameServer.map.getTile(x+xoff, y+yoff) );
