@@ -86,7 +86,6 @@ public void pruneClients()
 	//System.out.println("Updating Client Connections");
 	for(Client c : clients)
 	{
-		System.out.println("testing alive");
 		if( !c.isAlive() )
 		{
 			System.out.println("isntAlive");

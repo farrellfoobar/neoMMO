@@ -24,6 +24,7 @@ public class clientPlayer
 		serverSocket  = new Socket(ip, port);
 		input = new ObjectInputStream( serverSocket.getInputStream() );
 		output = new ObjectOutputStream( serverSocket.getOutputStream() );
+		output.flush();
 		
 		Scanner in = new Scanner(System.in);
 		
