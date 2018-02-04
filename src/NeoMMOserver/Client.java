@@ -35,9 +35,7 @@ public class Client extends Thread
 			this.socket = socket;
 			output = new ObjectOutputStream( socket.getOutputStream() );
 			output.flush();
-			System.out.println("Here1");
 			input = new ObjectInputStream( socket.getInputStream() );
-			System.out.println("Here2");
 		}
 		catch(Exception e)
 		{
@@ -53,6 +51,7 @@ public class Client extends Thread
 	@Override
 	public void run()
 	{
+		System.out.println("Client thread started!");
 		String command = null;
 		String[] methodArgs;
 		String method;
