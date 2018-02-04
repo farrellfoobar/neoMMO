@@ -105,10 +105,11 @@ public void acceptClients()
 		Client temp;
 		try
 		{
+			System.out.println("Waiting for connection!");
 			temp = new Client( listener.accept(), this );
+			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
 			clients.add( temp );	
 			currentPlayers++;
-			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
 		}
 		catch( SocketTimeoutException e){} 
 		catch (IOException e) 
