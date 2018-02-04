@@ -54,7 +54,7 @@ public gameServer() throws IOException
 		public void run()
 		{
 			tickPeriods++;
-			pruneClients();
+			acceptClients();
 			
 			if( tickPeriods >= tickPeriodPerRound)
 			{
