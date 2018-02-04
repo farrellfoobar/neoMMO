@@ -43,8 +43,6 @@ public static void main(String[] args) throws IOException
 public gameServer() throws IOException
 {
 	listener = new ServerSocket(port);
-	listener.setSoTimeout(1000);
-
 	Timer timer = new Timer();
 	
 	//this timer causes run() to run on a seperate thread once every tickPeriod milliseconds, but allows the constructor to continue execution
@@ -54,7 +52,7 @@ public gameServer() throws IOException
 		public void run()
 		{
 			tickPeriods++;
-			acceptClients();
+			pruneClients();
 			
 			if( tickPeriods >= tickPeriodPerRound)
 			{
@@ -67,6 +65,7 @@ public gameServer() throws IOException
 	//acceptClients() is blocking so it runs on the constructor's thread
 	while(true)
 	{
+		System.out.println("accepting");
 		acceptClients();
 	}
 }
