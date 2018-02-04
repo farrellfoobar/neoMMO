@@ -81,8 +81,7 @@ public void increment()
 
 public void pruneClients()
 {
-	System.out.println("Updating Client Connections");
-	
+	//System.out.println("Updating Client Connections");
 	for(Client c : clients)
 	{
 		System.out.println("testing alive");
