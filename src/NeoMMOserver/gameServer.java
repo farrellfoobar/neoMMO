@@ -28,7 +28,7 @@ public class gameServer extends Thread
 	static gameServer server;
 	ServerSocket listener;
 	public static int mapSize = 100;	
-	public static gameMap map = new gameMap();
+	public static gameMap map;
 	//Time keeping Vars
 	public final int milisPerRound = 10000;
 	public final int tickPeriod = 10;
@@ -44,6 +44,8 @@ public gameServer() throws IOException
 {
 	listener = new ServerSocket(port);
 	Timer timer = new Timer();
+	
+	map = new gameMap(mapSize);
 	
 	//this timer causes run() to run on a seperate thread once every tickPeriod milliseconds, but allows the constructor to continue execution
 	//pruneClients is nonblocking so it can occur on the timer thread

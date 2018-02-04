@@ -2,6 +2,7 @@ package NeoMMOserver;
 
 import java.util.ArrayList;
 import NeoMMOshare.Tile;
+import NeoMMOshare.gameMap;
 
 public class serverPlayer
 {
@@ -9,7 +10,7 @@ public class serverPlayer
 	private int movementPoints = 4;
 	private int maxMovementPoints = 8;
 	private int movementPerTurn = 4;
-	private int viewX = 10, viewY = 6;
+	private int viewX = 9, viewY = 5;
 	
 	public void increment()	//increment shouldn't exist in PlayerInterface as only the server should be able to call it
 	{
@@ -17,7 +18,7 @@ public class serverPlayer
 			movementPoints += movementPerTurn;
 	}
 	
-	public ArrayList< ArrayList<Tile >> move(String xin, String yin)	//NOTE: this method returns Boolean not boolean: Boolean is an object wrapper that allows us to call toString.
+	public gameMap move(String xin, String yin)	//NOTE: this method returns Boolean not boolean: Boolean is an object wrapper that allows us to call toString.
 	{
 		int x = Integer.parseInt(xin);
 		int y = Integer.parseInt(yin);
@@ -29,13 +30,14 @@ public class serverPlayer
 			out = true;
 		}
 		
-		ArrayList< ArrayList<Tile> > visable = new ArrayList< ArrayList<Tile> >();
+		gameMap m = new gameMap(x, y);
 		
-		
-		for( int xoff = -viewX/2; xoff <= viewX/2; xoff++)
-			for( int yoff = -viewY/2; yoff <= viewY/2; yoff++ )
-				visable.get( xoff+viewX/2 ).set(yoff+viewX/2, gameServer.map.getTile(x+xoff, y+yoff) );
-		
-		return visable;
+		for( int xoff = 0; xoff < viewX; xoff++)
+			for( int yoff = 0; yoff < viewY; yoff++ )
+			{
+				m.setTile(xoff, yoff, gameServer.map.getTile(xoff, yoff));
+			}
+
+		return m;
 	}
 }
