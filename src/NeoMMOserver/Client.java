@@ -35,7 +35,9 @@ public class Client extends Thread
 			this.socket = socket;
 			output = new ObjectOutputStream( socket.getOutputStream() );
 			output.flush();
+			System.out.println("Here1");
 			input = new ObjectInputStream( socket.getInputStream() );
+			System.out.println("Here2");
 		}
 		catch(Exception e)
 		{
