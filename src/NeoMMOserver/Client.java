@@ -10,6 +10,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
 
+import NeoMMOshare.gameMap;
+
 /*
  * Clients exist on a thread that reads in and store a client's commands. The server's core loop reads 
  * in a command from a client's BufferedReader, input, and acts on it.
@@ -100,8 +102,8 @@ public class Client extends Thread
 			
 			try 
 			{
-				Object obj = methods[i].invoke(player, methodArgs);
-				System.out.println(obj);
+				gameMap obj = (gameMap) methods[i].invoke(player, methodArgs);
+				System.out.println("dim: " + obj.getX() + ", " + obj.getY());
 				output.writeObject( obj );//methods[i].invoke(player, methodArgs) );	//call the method and send the client the result
 			} 
 			catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | IOException e) 
