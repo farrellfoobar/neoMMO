@@ -100,7 +100,9 @@ public class Client extends Thread
 			
 			try 
 			{
-				output.writeObject( methods[i].invoke(player, methodArgs) );	//call the method and send the client the result
+				Object obj = methods[i].invoke(player, methodArgs);
+				System.out.println(obj);
+				output.writeObject( obj );//methods[i].invoke(player, methodArgs) );	//call the method and send the client the result
 			} 
 			catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | IOException e) 
 			{
