@@ -1,10 +1,11 @@
 package NeoMMOshare;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import NeoMMOserver.gameServer;
 
-public class gameMap 
+public class gameMap implements Serializable
 {
 	private ArrayList< ArrayList< Tile > > map; //calling this map makes this class very confusing
 	
@@ -51,4 +52,7 @@ public class gameMap
 	{
 		return map.get(x).get(y);
 	}
+	
+	
+	
 }
