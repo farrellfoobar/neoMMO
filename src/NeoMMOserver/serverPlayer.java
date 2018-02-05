@@ -48,7 +48,6 @@ public class serverPlayer
 			for( int yoff = 0; yoff < viewY; yoff++ )
 			{
 				m.setTile(xoff, yoff, gameServer.map.getTile(this.x + xoff, this.y + yoff));
-				System.out.println("getting tile at: " + xoff + ", " + yoff);
 			}
 		
 		return m;

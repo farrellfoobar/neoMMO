@@ -34,4 +34,10 @@ public class Tile implements Serializable
 	{
 		this.img = t.img;
 	}
+	
+	public String getImg()
+	{
+		return img;
+	}
+	
 }

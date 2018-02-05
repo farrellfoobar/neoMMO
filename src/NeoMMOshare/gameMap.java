@@ -88,7 +88,7 @@ public class gameMap extends JPanel implements Serializable
 					if( x % 2 == 0)	//every other collumn is offset for hexagons
 					{
 						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y) ) ), 205*x, 200*y, null);
-						System.out.println( "painting: " + this.getTile(x, y) );
+						System.out.println( "painting: " + this.getTile(x, y).getImg() );
 					}
 					else
 						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y) ) ), 205*x, 200*y+100, null);
