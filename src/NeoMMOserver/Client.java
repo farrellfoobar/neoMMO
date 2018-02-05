@@ -100,6 +100,7 @@ public class Client extends Thread
 				System.out.println(method);
 				for( String s : methodArgs)
 					System.out.println(s);
+				System.out.println( methodArgs[0].equals("") );
 				output.writeObject( methods[i].invoke(player, methodArgs) );	//call the method and send the client the result
 			} 
 			catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | IOException e) 
