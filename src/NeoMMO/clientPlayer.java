@@ -25,6 +25,7 @@ public class clientPlayer
     private ObjectOutputStream output;
     private gameMap view;
     private JFrame frame;
+    private gameMap map;
     
 	public clientPlayer(String ip, int port) throws UnknownHostException, IOException, InterruptedException, ClassNotFoundException
 	{

@@ -18,6 +18,8 @@ public class gameMap extends JPanel implements Serializable
 	private ArrayList< ArrayList< Tile > > map; //calling this map makes this class very confusing
 	static final String containerName = "neoMMO";
 	static final String[] images = {"Cabin.png", "City.png", "Forest.png", "Hill.png", "PlainGrass.png", "PlainRiver.png"};
+	File temp = new File("");
+	String path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + "\\assets\\tiles\\";
 	
 	public gameMap(int size)
 	{
@@ -40,16 +42,6 @@ public class gameMap extends JPanel implements Serializable
 			this.map.add(x, new ArrayList<Tile>(length) );
 			for( int y = 0; y < length; y++)
 				this.map.get(x).add(y, new Tile() );
-		}
-	}
-	
-	public gameMap( gameMap from )
-	{
-		for( int x = 0; x < from.getX(); x++)
-		{
-			this.map.add(x, new ArrayList<Tile>(from.getX()) );
-			for( int y = 0; y < from.getY(); y++)
-				this.map.get(x).add(y, from.getTile(x, y) );
 		}
 	}
 	
@@ -81,9 +73,9 @@ public class gameMap extends JPanel implements Serializable
 			for(int x = 0; x < map.size(); x++)
 				for(int y = 0; y < map.get(0).size(); y++)
 					if( x % 2 == 0)	//every other collumn is offset for hexagons
-						g.drawImage( this.getTile(x, y).getImage(), 205*x, 200*y, null);
+						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y) ) ), 205*x, 200*y, null);
 					else
-						g.drawImage( this.getTile(x, y).getImage(), 205*x, 200*y+100, null);
+						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y) ) ), 205*x, 200*y+100, null);
 			
 		}
 		catch(IOException e)
