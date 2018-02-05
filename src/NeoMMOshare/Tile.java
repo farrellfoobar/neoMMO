@@ -1,12 +1,13 @@
 package NeoMMOshare;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Tile 
+public class Tile implements Serializable
 {
 	private String tile;
 	Random rand = new Random();
-	static final String[] images = {"Cabin.png", "City.png", "Forest.png", "Hill.png", "PlainGrass.png", "PlainRiver.png"};
+	private static final String[] images = {"Cabin.png", "City.png", "Forest.png", "Hill.png", "PlainGrass.png", "PlainRiver.png"};
 	
 	public Tile()
 	{
