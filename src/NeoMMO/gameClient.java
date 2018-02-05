@@ -29,7 +29,7 @@ public class gameClient
 	static protected gameMap view = new gameMap(1,1);
 	static clientPlayer player;
 	
-	public static void main(String[] args) throws IOException, InterruptedException 
+	public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException 
     {
 		JFrame frame = new JFrame("NeoMMO");
 		gameMap map = new gameMap(9, 5);

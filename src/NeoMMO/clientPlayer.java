@@ -28,8 +28,11 @@ public class clientPlayer
 		output = new ObjectOutputStream( serverSocket.getOutputStream() );
 		output.flush();
 		
-		output.writeObject("getView");
+		output.writeObject("getView,");
+		System.out.println("here1");
 		view = (gameMap) input.readObject();
+		System.out.println("here2");
+		
 		
 		Scanner in = new Scanner(System.in);
 		
