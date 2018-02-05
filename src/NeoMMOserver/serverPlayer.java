@@ -42,12 +42,14 @@ public class serverPlayer
 	
 	public gameMap getView()	//since move returns the map this method is for when the client first connects
 	{
+		System.out.println("at getView()");
 		gameMap m = new gameMap(viewX, viewY);
 		
 		for( int xoff = 0; xoff < viewX; xoff++)
 			for( int yoff = 0; yoff < viewY; yoff++ )
 			{
 				m.setTile(xoff, yoff, gameServer.map.getTile(this.x + xoff, this.y + yoff));
+				System.out.println( gameServer.map.getTile(xoff, yoff) );
 			}
 		
 		return m;
