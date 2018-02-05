@@ -87,16 +87,16 @@ public class gameMap extends JPanel implements Serializable
 				for(int y = 0; y < map.get(0).size(); y++)
 					if( x % 2 == 0)	//every other collumn is offset for hexagons
 					{
-						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y) ) ), 205*x, 200*y, null);
+						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y).getImg() ) ), 205*x, 200*y, null);
 						System.out.println( "painting: " + this.getTile(x, y).getImg() );
 					}
 					else
-						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y) ) ), 205*x, 200*y+100, null);
+						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y).getImg() ) ), 205*x, 200*y+100, null);
 			
 		}
 		catch(IOException e)
 		{
-			System.out.println( path );
+			System.out.println( path + this.getTile(1, 1) );
 			System.out.println(e);
 			System.out.println("Can't find assets file, try pulling again.");
 		}
