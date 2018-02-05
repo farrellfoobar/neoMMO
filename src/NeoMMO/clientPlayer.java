@@ -38,7 +38,8 @@ public class clientPlayer
 		Object obj = input.readObject();
 		System.out.println("instanceof? " + ( obj instanceof gameMap ) );
 		
-		clientView = (  (gameMap) obj ); //new gameMap(  (gameMap) input.readObject() );
+		clientView = new gameMap(  (gameMap) input.readObject() );
+		System.out.println("Here!");
 		System.out.println( clientView.getTile(1, 1).getImg() );
 		startUI( clientView );
 		

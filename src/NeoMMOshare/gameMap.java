@@ -49,10 +49,10 @@ public class gameMap extends JPanel implements Serializable
 	{
 		this.map = new ArrayList< ArrayList< Tile > >();
 		
-		for( int x = 0; x < from.getX(); x++)
+		for( int x = 0; x < from.getWidth(); x++)
 		{
 			this.map.add(x, new ArrayList<Tile>( from.getX() ) );
-			for( int y = 0; y < from.getY(); y++)
+			for( int y = 0; y < from.getLength(); y++)
 				this.map.get(x).add(y, new Tile( from.getTile(x, y) ) );
 		}
 	}
@@ -103,4 +103,13 @@ public class gameMap extends JPanel implements Serializable
 
 	}
 	
+	public int getWidth()
+	{
+		return this.map.size();
+	}
+	
+	public int getLength()
+	{
+		return this.map.get(0).size();
+	}
 }
