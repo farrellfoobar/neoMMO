@@ -10,7 +10,7 @@ public class Tile
 	
 	public Tile()
 	{
-		tile = images[ rand.nextInt() ];
+		tile = images[ rand.nextInt(images.length) ];
 	}
 	
 }
