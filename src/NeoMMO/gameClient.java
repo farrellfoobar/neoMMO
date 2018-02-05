@@ -20,10 +20,13 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import NeoMMOshare.gameMap;
+
 public class gameClient 
 {
 	static final String ip = "atlasNetwork.dynu.net";
 	static final int port = 9090;
+	static protected gameMap view = new gameMap(1,1);
 	static clientPlayer player;
 	
 	public static void main(String[] args) throws IOException, InterruptedException 
@@ -42,47 +45,3 @@ public class gameClient
 	
 }
 
-class gameMap extends JPanel
-{
-	static final String containerName = "neoMMO";
-	static final String[] images = {"Cabin.png", "City.png", "Forest.png", "Hill.png", "PlainGrass.png", "PlainRiver.png"};
-	
-	private int x, y;
-	
-	public gameMap(int x, int y)
-	{
-		this.x = x;
-		this.y = y;
-	}
-	
-	public void paint( Graphics g )
-	{
-		File temp = new File("");
-		//path should == absolute path + \NeoMMO\assets\PlainGrass.png
-		String path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + "\\assets\\tiles\\";
-		BufferedImage[] imgs = new BufferedImage[images.length];
-		Random rand = new Random();
-		
-		try
-		{
-			for( int i = 0; i < images.length; i++ )
-			{
-				imgs[i] = ImageIO.read( new File( path + images[i] ) );
-			}
-			
-			for(int x = 0; x < this.x; x++)
-				for(int y = 0; y < this.y; y++)
-					if( x % 2 == 0)
-						g.drawImage( imgs[rand.nextInt(6)], 205*x, 200*y, null);
-					else
-						g.drawImage( imgs[rand.nextInt(6)], 205*x, 200*y+100, null);
-			
-		}
-		catch(IOException e)
-		{
-			System.out.println(e);
-			System.out.println("Can't find assets file, try pulling again.");
-		}
-		
-	}
-}

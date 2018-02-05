@@ -1,13 +1,23 @@
 package NeoMMOshare;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 import NeoMMOserver.gameServer;
 
-public class gameMap implements Serializable
+public class gameMap extends JPanel implements Serializable
 {
 	private ArrayList< ArrayList< Tile > > map; //calling this map makes this class very confusing
+	static final String containerName = "neoMMO";
+	static final String[] images = {"Cabin.png", "City.png", "Forest.png", "Hill.png", "PlainGrass.png", "PlainRiver.png"};
 	
 	public gameMap(int size)
 	{
@@ -53,6 +63,37 @@ public class gameMap implements Serializable
 		return map.get(x).get(y);
 	}
 	
-	
+	@Override
+	public void paint( Graphics g )
+	{
+
+		File temp = new File("");
+		//path should == absolute path + \NeoMMO\assets\PlainGrass.png
+		String path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + "\\assets\\tiles\\";
+		BufferedImage[] imgs = new BufferedImage[images.length];
+		Random rand = new Random();
+		
+		try
+		{
+			for( int i = 0; i < images.length; i++ )
+			{
+				imgs[i] = ImageIO.read( new File( path + images[i] ) );
+			}
+			
+			for(int x = 0; x < map.size(); x++)
+				for(int y = 0; y < map.get(0).size(); y++)
+					if( x % 2 == 0)
+						g.drawImage( imgs[rand.nextInt(6)], 205*x, 200*y, null);
+					else
+						g.drawImage( imgs[rand.nextInt(6)], 205*x, 200*y+100, null);
+			
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+			System.out.println("Can't find assets file, try pulling again.");
+		}
+
+	}
 	
 }

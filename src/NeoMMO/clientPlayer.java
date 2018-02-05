@@ -12,19 +12,24 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import NeoMMOshare.Tile;
+import NeoMMOshare.gameMap;
 
 public class clientPlayer
 {
     private Socket serverSocket;
     private ObjectInputStream input;
     private ObjectOutputStream output;
+    private gameMap view;
     
-	public clientPlayer(String ip, int port) throws UnknownHostException, IOException, InterruptedException
+	public clientPlayer(String ip, int port) throws UnknownHostException, IOException, InterruptedException, ClassNotFoundException
 	{
 		serverSocket  = new Socket(ip, port);
 		input = new ObjectInputStream( serverSocket.getInputStream() );
 		output = new ObjectOutputStream( serverSocket.getOutputStream() );
 		output.flush();
+		
+		output.writeObject("getView");
+		view = (gameMap) input.readObject();
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -66,9 +71,8 @@ public class clientPlayer
 		Boolean out = false;
 		try {
 			output.writeObject("move," + x + "," + y);
-			String s = input.readObject().toString();
-			System.out.println("message in: " + s);
-			out = Boolean.parseBoolean( s );
+			gameMap viewIn = ( (gameMap) input.readObject() );
+			gameClient.view = viewIn;
 		} catch (IOException | ClassNotFoundException e) 
 		{
 			e.printStackTrace();
