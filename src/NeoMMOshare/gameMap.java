@@ -14,9 +14,9 @@ public class gameMap
 		
 		for( int x = 0; x < size; x++)
 		{
-			this.map.set(x, new ArrayList<Tile>() );
+			this.map.add(x, new ArrayList<Tile>() );
 			for( int y = 0; y < size; y++)
-				this.map.get(x).set(y, new Tile() );
+				this.map.get(x).add(y, new Tile() );
 		}
 	}
 	
@@ -26,9 +26,9 @@ public class gameMap
 		
 		for( int x = 0; x < width; x++)
 		{
-			this.map.set(x, new ArrayList<Tile>(length) );
+			this.map.add(x, new ArrayList<Tile>(length) );
 			for( int y = 0; y < length; y++)
-				this.map.get(x).set(y, new Tile() );
+				this.map.get(x).add(y, new Tile() );
 		}
 	}
 	
@@ -39,7 +39,7 @@ public class gameMap
 
 	public void setTile(int x, int y, Tile t)
 	{
-		this.map.get(x).set(y, t);
+		this.map.get(x).set(y, t);	//add moves other elements, set overwrites iit
 	}
 	
 	private int[][] getAdjacent(int x, int y)
