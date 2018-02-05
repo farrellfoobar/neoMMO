@@ -29,7 +29,7 @@ public class serverPlayer
 			this.y = y;
 		}
 		
-		gameMap m = new gameMap(x, y);
+		gameMap m = new gameMap(viewX, viewY);
 		
 		for( int xoff = 0; xoff < viewX; xoff++)
 			for( int yoff = 0; yoff < viewY; yoff++ )
