@@ -27,7 +27,6 @@ public class serverPlayer
 		{
 			this.x = x;
 			this.y = y;
-			out = true;
 		}
 		
 		gameMap m = new gameMap(x, y);

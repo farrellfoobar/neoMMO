@@ -14,7 +14,7 @@ public class gameMap
 		
 		for( int x = 0; x < size; x++)
 		{
-			this.map.set(x, new ArrayList() )
+			this.map.set(x, new ArrayList<Tile>() );
 			for( int y = 0; y < size; y++)
 				this.map.get(x).set(y, new Tile() );
 		}
