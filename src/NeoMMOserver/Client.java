@@ -103,7 +103,6 @@ public class Client extends Thread
 			try 
 			{
 				gameMap obj = (gameMap) methods[i].invoke(player, methodArgs);
-				System.out.println("return dim: " + obj.getX() + ", " + obj.getY());
 				output.writeObject( obj );//methods[i].invoke(player, methodArgs) );	//call the method and send the client the result
 			} 
 			catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | IOException e) 
