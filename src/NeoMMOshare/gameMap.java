@@ -80,12 +80,16 @@ public class gameMap extends JPanel implements Serializable
 	@Override
 	public void paint( Graphics g )
 	{
+		System.out.println("painting!");
 		try
 		{			
 			for(int x = 0; x < map.size(); x++)
 				for(int y = 0; y < map.get(0).size(); y++)
 					if( x % 2 == 0)	//every other collumn is offset for hexagons
+					{
 						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y) ) ), 205*x, 200*y, null);
+						System.out.println( "painting: " + this.getTile(x, y) );
+					}
 					else
 						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y) ) ), 205*x, 200*y+100, null);
 			
