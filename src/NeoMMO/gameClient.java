@@ -31,15 +31,6 @@ public class gameClient
 	
 	public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException 
     {
-		JFrame frame = new JFrame("NeoMMO");
-		gameMap map = new gameMap(9, 5);
-		frame.setPreferredSize( new Dimension(500, 500) );
-		map.setPreferredSize( new Dimension(400, 400) );
-		
-		frame.add(map, BorderLayout.CENTER);
-		frame.pack();
-		frame.setVisible(true);
-		
 		player = new clientPlayer(ip, port);
     }
 	

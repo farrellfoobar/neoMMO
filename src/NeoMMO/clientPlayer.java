@@ -1,5 +1,7 @@
 package NeoMMO;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +13,8 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 import NeoMMOshare.Tile;
 import NeoMMOshare.gameMap;
 
@@ -20,6 +24,8 @@ public class clientPlayer
     private ObjectInputStream input;
     private ObjectOutputStream output;
     private gameMap view;
+    private JFrame frame;
+    private gameMap map;
     
 	public clientPlayer(String ip, int port) throws UnknownHostException, IOException, InterruptedException, ClassNotFoundException
 	{
@@ -29,9 +35,8 @@ public class clientPlayer
 		output.flush();
 		
 		output.writeObject("getView,");
-		System.out.println("here1");
 		view = (gameMap) input.readObject();
-		System.out.println("here2");
+		startUI(view);
 		
 		
 		Scanner in = new Scanner(System.in);
@@ -85,4 +90,16 @@ public class clientPlayer
 		return out;
 	}
 
+	private void startUI(gameMap serverMap)
+	{
+		frame = new JFrame("NeoMMO");
+		map = serverMap;
+		frame.setPreferredSize( new Dimension(500, 500) );
+		map.setPreferredSize( new Dimension(400, 400) );
+		
+		frame.add(map, BorderLayout.CENTER);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
 }

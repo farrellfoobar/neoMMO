@@ -66,26 +66,14 @@ public class gameMap extends JPanel implements Serializable
 	@Override
 	public void paint( Graphics g )
 	{
-
-		File temp = new File("");
-		//path should == absolute path + \NeoMMO\assets\PlainGrass.png
-		String path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + "\\assets\\tiles\\";
-		BufferedImage[] imgs = new BufferedImage[images.length];
-		Random rand = new Random();
-		
 		try
-		{
-			for( int i = 0; i < images.length; i++ )
-			{
-				imgs[i] = ImageIO.read( new File( path + images[i] ) );
-			}
-			
+		{			
 			for(int x = 0; x < map.size(); x++)
 				for(int y = 0; y < map.get(0).size(); y++)
-					if( x % 2 == 0)
-						g.drawImage( imgs[rand.nextInt(6)], 205*x, 200*y, null);
+					if( x % 2 == 0)	//every other collumn is offset for hexagons
+						g.drawImage( this.getTile(x, y).getImage(), 205*x, 200*y, null);
 					else
-						g.drawImage( imgs[rand.nextInt(6)], 205*x, 200*y+100, null);
+						g.drawImage( this.getTile(x, y).getImage(), 205*x, 200*y+100, null);
 			
 		}
 		catch(IOException e)
