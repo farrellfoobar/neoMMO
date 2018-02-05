@@ -13,10 +13,10 @@ public class Tile implements Serializable
 	private String tile;
 	Random rand = new Random();
 	private static final String[] images = {"Cabin.png", "City.png", "Forest.png", "Hill.png", "PlainGrass.png", "PlainRiver.png"};
-	File temp = new File("");
 	static final String containerName = "neoMMO";
+	File temp;
 	//path should == absolute path + \NeoMMO\assets\PlainGrass.png
-	String path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + "\\assets\\tiles\\";
+	String path;;
 	
 	public Tile()
 	{
@@ -25,6 +25,11 @@ public class Tile implements Serializable
 	
 	public BufferedImage getImage() throws IOException
 	{
+		//temp and path are instantiated 
+		temp = new File("");
+		path = temp.getAbsolutePath().substring(0, temp.getAbsolutePath().lastIndexOf( containerName )+containerName.length() ) + "\\assets\\tiles\\";
+		System.out.println(path + tile);
+		
 		return ImageIO.read( new File(path + tile) );
 	}
 }

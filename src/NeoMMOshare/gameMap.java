@@ -43,6 +43,16 @@ public class gameMap extends JPanel implements Serializable
 		}
 	}
 	
+	public gameMap( gameMap from )
+	{
+		for( int x = 0; x < from.getX(); x++)
+		{
+			this.map.add(x, new ArrayList<Tile>(from.getX()) );
+			for( int y = 0; y < from.getY(); y++)
+				this.map.get(x).add(y, from.getTile(x, y) );
+		}
+	}
+	
 	public gameMap()
 	{
 		this.map = new ArrayList< ArrayList< Tile > >();
