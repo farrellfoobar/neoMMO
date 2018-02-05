@@ -52,6 +52,7 @@ public class serverPlayer
 				System.out.println( gameServer.map.getTile(xoff, yoff) );
 			}
 		
+		System.out.println("dim before return: " + m.getX() + m.getY()); //NOTE TO SELF: getX is not what you think it is: map not being displayed coorectly on client
 		return m;
 	}
 }
