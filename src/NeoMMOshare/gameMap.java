@@ -45,6 +45,18 @@ public class gameMap extends JPanel implements Serializable
 		}
 	}
 	
+	public gameMap( gameMap from )
+	{
+		this.map = new ArrayList< ArrayList< Tile > >();
+		
+		for( int x = 0; x < from.getX(); x++)
+		{
+			this.map.add(x, new ArrayList<Tile>( from.getX() ) );
+			for( int y = 0; y < from.getY(); y++)
+				this.map.get(x).add(y, new Tile( from.getTile(x, y) ) );
+		}
+	}
+	
 	public gameMap()
 	{
 		this.map = new ArrayList< ArrayList< Tile > >();
@@ -80,6 +92,7 @@ public class gameMap extends JPanel implements Serializable
 		}
 		catch(IOException e)
 		{
+			System.out.println( path );
 			System.out.println(e);
 			System.out.println("Can't find assets file, try pulling again.");
 		}

@@ -23,9 +23,9 @@ public class clientPlayer
     private Socket serverSocket;
     private ObjectInputStream input;
     private ObjectOutputStream output;
-    private gameMap view;
+    private gameMap clientView;
     private JFrame frame;
-    private gameMap map;
+    private gameMap serverMap;
     
 	public clientPlayer(String ip, int port) throws UnknownHostException, IOException, InterruptedException, ClassNotFoundException
 	{
@@ -35,8 +35,8 @@ public class clientPlayer
 		output.flush();
 		
 		output.writeObject("getView,");
-		view = (gameMap) input.readObject();
-		startUI(view);
+		clientView = new gameMap(  (gameMap) input.readObject() );
+		startUI( clientView );
 		
 		
 		Scanner in = new Scanner(System.in);
@@ -93,11 +93,10 @@ public class clientPlayer
 	private void startUI(gameMap serverMap)
 	{
 		frame = new JFrame("NeoMMO");
-		map = serverMap;
 		frame.setPreferredSize( new Dimension(500, 500) );
-		map.setPreferredSize( new Dimension(400, 400) );
+		clientView.setPreferredSize( new Dimension(400, 400) );
 		
-		frame.add(map, BorderLayout.CENTER);
+		frame.add(clientView, BorderLayout.CENTER);
 		frame.pack();
 		frame.setVisible(true);
 	}
