@@ -95,12 +95,11 @@ public class Client extends Thread
 			while( !methods[i].getName().equals(method) )
 				i++;
 			
+			if( methodArgs[0].equals("") )
+				methodArgs = new String[0];
+			
 			try 
 			{
-				System.out.println(method);
-				for( String s : methodArgs)
-					System.out.println(s);
-				System.out.println( methodArgs[0].equals("") );
 				output.writeObject( methods[i].invoke(player, methodArgs) );	//call the method and send the client the result
 			} 
 			catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | IOException e) 
