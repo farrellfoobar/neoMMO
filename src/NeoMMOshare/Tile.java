@@ -7,7 +7,7 @@ public class Tile implements Serializable
 {
 	private String img;
 	Random rand = new Random();
-	private static final String[] images = {"Cabin.png", "City.png", "Forest.png", "Hill.png", "PlainGrass.png", "PlainRiver.png"};
+	private static final String[] images = {"CabinBig.png", "CityBig.png", "ForestBig.png", "HillBig.png", "PlainGrassBig.png", "PlainRiverBig.png"};
 	
 	public Tile()
 	{

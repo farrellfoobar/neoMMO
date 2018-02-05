@@ -100,6 +100,7 @@ public class clientPlayer
 		frame = new JFrame("NeoMMO");
 		frame.setPreferredSize( new Dimension(500, 500) );
 		clientView.setPreferredSize( new Dimension(400, 400) );
+		clientView.setVisible(true);
 		
 		frame.add(clientView, BorderLayout.CENTER);
 		frame.pack();
