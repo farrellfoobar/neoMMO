@@ -10,7 +10,7 @@ public class gameMap
 	
 	public gameMap(int size)
 	{
-		this.map = new ArrayList< ArrayList< Tile > >();
+		this.map = new ArrayList< ArrayList< Tile > >(size);
 		
 		for( int x = 0; x < size; x++)
 		{
