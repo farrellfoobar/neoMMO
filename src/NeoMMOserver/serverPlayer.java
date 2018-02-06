@@ -53,6 +53,7 @@ public class serverPlayer
 			}
 		
 		System.out.println("dim before return: " + m.getMapWidth() + m.getMapHeight() );
+		System.out.println("map size: " + m.getMapWidth() + ", " + m.getMapHeight());
 		return m;
 	}
 }
