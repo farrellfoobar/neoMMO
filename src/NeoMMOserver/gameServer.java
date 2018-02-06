@@ -51,7 +51,7 @@ public gameServer() throws IOException
 	//pruneClients is nonblocking so it can occur on the timer thread
 	timer.schedule( new TimerTask()	
 	{
-		public synchronized void run()
+		public void run()
 		{
 			tickPeriods++;
 			pruneClients();
@@ -72,7 +72,7 @@ public gameServer() throws IOException
 }
 
 //This loop handles passive things that the client did not command, like timekeeping, bleeding etc
-public void increment()
+private synchronized void increment()
 {
 	System.out.println("Incrementing!");
 	
@@ -83,7 +83,7 @@ public void increment()
 	}
 }
 
-public void pruneClients()
+private synchronized void pruneClients()
 {
 	//System.out.println("Updating Client Connections");
 	for(Client c : clients)
