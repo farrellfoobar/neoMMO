@@ -51,7 +51,7 @@ public gameServer() throws IOException
 	//pruneClients is nonblocking so it can occur on the timer thread
 	timer.schedule( new TimerTask()	
 	{
-		public void run()
+		public synchronized void run()
 		{
 			tickPeriods++;
 			pruneClients();
@@ -99,7 +99,7 @@ public void pruneClients()
 }
 
 //This method is blocking
-public void acceptClients()
+public synchronized void acceptClients()
 {
 	System.out.println("accepting");
 	if(currentPlayers < maxPlayers)
