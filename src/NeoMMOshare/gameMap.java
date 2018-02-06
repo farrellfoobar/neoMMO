@@ -52,7 +52,7 @@ public class gameMap extends JPanel implements Serializable
 		for( int x = 0; x < from.getWidth(); x++)
 		{
 			this.map.add(x, new ArrayList<Tile>( from.getX() ) );
-			for( int y = 0; y < from.getLength(); y++)
+			for( int y = 0; y < from.getMapHeight(); y++)
 				this.map.get(x).add(y, new Tile( from.getTile(x, y) ) );
 		}
 	}
@@ -80,35 +80,30 @@ public class gameMap extends JPanel implements Serializable
 	@Override
 	public void paint( Graphics g )
 	{
-		System.out.println("painting!");
 		try
-		{			
-			for(int x = 0; x < map.size(); x++)
-				for(int y = 0; y < map.get(0).size(); y++)
-					if( x % 2 == 0)	//every other collumn is offset for hexagons
-					{
+		{
+			for(int x = 0; x < this.getMapWidth(); x++)
+				for(int y = 0; y < this.getMapHeight(); y++)
+					if( x % 2 == 0)
 						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y).getImg() ) ), 205*x, 200*y, null);
-						System.out.println( "painting: " + this.getTile(x, y).getImg() );
-					}
 					else
 						g.drawImage( ImageIO.read( new File( path + this.getTile(x, y).getImg() ) ), 205*x, 200*y+100, null);
 			
 		}
 		catch(IOException e)
 		{
-			System.out.println( path + this.getTile(1, 1) );
 			System.out.println(e);
 			System.out.println("Can't find assets file, try pulling again.");
 		}
 
 	}
 	
-	public int getWidth()
+	public int getMapWidth()
 	{
 		return this.map.size();
 	}
 	
-	public int getLength()
+	public int getMapHeight()
 	{
 		return this.map.get(0).size();
 	}

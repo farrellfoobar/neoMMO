@@ -97,12 +97,12 @@ public class clientPlayer
 
 	private void startUI(gameMap serverMap)
 	{
+		gameMap m = new gameMap(10, 5);
 		frame = new JFrame("NeoMMO");
 		frame.setPreferredSize( new Dimension(500, 500) );
 		clientView.setPreferredSize( new Dimension(400, 400) );
-		clientView.setVisible(true);
 		
-		frame.add(clientView, BorderLayout.CENTER);
+		frame.add( clientView, BorderLayout.CENTER);
 		frame.pack();
 		frame.setVisible(true);
 	}
