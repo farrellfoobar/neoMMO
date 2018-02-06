@@ -99,7 +99,7 @@ public void pruneClients()
 }
 
 //This method is blocking
-public synchronized void acceptClients()
+public void acceptClients()
 {
 	System.out.println("accepting");
 	if(currentPlayers < maxPlayers)
@@ -110,7 +110,7 @@ public synchronized void acceptClients()
 			System.out.println("Waiting for connection!");
 			temp = new Client( listener.accept(), this );
 			System.out.println("Here");
-			clients.add(temp);
+			syncAddClient(temp);
 			currentPlayers++;
 			System.out.println("Player connected! at " + currentPlayers + "/"  + maxPlayers);
 		} 
@@ -120,5 +120,11 @@ public synchronized void acceptClients()
 		}
 	}
 }
-         
+ 
+//this simply makes the add request wait to prevent concurrent modification 
+private synchronized void syncAddClient(Client c)	
+{
+	clients.add( c );
+}
+
 }
